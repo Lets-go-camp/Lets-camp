@@ -2,9 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const parseString = require('xml2js').parseString;
 
+require('dotenv').config()
+
 const campController={};
 
-campController.query = (req, res, next){
+campController.query = (req, res, next) => {
   const { pet, waterFront, waterHook, sewerHook } = req.body;
   console.log(this.state)
   console.log('here');
