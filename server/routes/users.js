@@ -18,7 +18,7 @@ router.get('/login', userController.login, (req, res) => {
 //     res.status(200).json()
 // });
 
-router.post('/create', (req, res) => {
+router.post('/signup',  userController.createUser, (req, res) => {
     res.status(200).json()
 });
 
@@ -31,7 +31,7 @@ router.get('/favorite', userController.getFav, (req, res) => {
     res.status(200).json()
 });
 
-router.delete('/delete', userController.deleteUser, (req, res) => {
+router.delete('/deleteuser', userController.deleteUser, (req, res) => {
     res.status(200).json()
 });
 
