@@ -1,49 +1,51 @@
 const path = require('path');
 const express = require('express');
-// const bodyParser = require('body-parser');
-// const jsonParser = bodyParser.json();
-const app = express();
-const PORT = 3000;
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+
+
 require('dotenv').config();
 
+// const jsonParser = bodyParser.json();
 
-
+const app = express();
+const PORT = 3000;
 
 /** 
 * required router(s)
 */
 const userRouter = require('./routes/users.js');
-
-
+const campRouter = require('./routes/camp.js');
 
 /**
  * handle parsing request body
  */
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 /**
  * handle requests for static files
  */
-
-
-
-
-
 /**
  * define route handlers
  */
 
 app.use('/user', userRouter);
+app.use('/camp', campRouter);
 
-
+// app.post('/camp/query',
+//   // campController.query,
+//   (req, res) => {
+//     console.log('campjs line 9')
+//     res.sendStatus(200);
+//   }
+// )
 
 /**
  *  route handler to respond with main app 
  */
-
-
-
 
 
 // //this is the error handler

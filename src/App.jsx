@@ -18,69 +18,51 @@ class App extends Component {
 
         this.state = {
             pet: false,
+            state: "",
             sewerHook: false,
             waterHook: false,
             waterFront: false,
             queriedGrounds: [],
         }
-        this.queryCampground = this.queryCampground.bind(this);
         this.petOnChange = this.petOnChange.bind(this)
         this.waterHookOnChange = this.waterHookOnChange.bind(this)
         this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
         this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
+        this.stateOnChange = this.stateOnChange.bind(this)
         this.query = this.query.bind(this);
     }
 
-
-    
-
-    
-    queryCampground(e){
-        e.preventDefault()
-        console.log(this.state)
-        console.log('here');
-        let apiString = 'http://api.amp.active.com/camping/campgrounds?'
-        if(this.state.pet === true){
-            apiString +='&pets=3010'
-        }
-        if(this.state.sewerHook == true){
-            apiString += '&sewer=3007'
-        }
-        if(this.state.waterHook === true){
-            apiString += '&water=3007'
-        }
-        if(this.state.waterFront === true){
-            apiString += '&waterfront=3011'
-        }
-        const campOptions = {
-            url: apiString += 'APIKEYHERE',
-            method: 'GET',
+    query(e){
+        e.preventDefault();
+        console.log('entered query')
+        fetch('/camp/query', {
+            method: 'POST',
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json;charset=UTF-8',
-            }
-          }
-          axios(campOptions)
-            .then(response => {
-              console.log(response);
-              const stringRes = response.data;
-              // console.log("this is json stringified response: ", stringRes)
-              // const tyler = parser.toJson(response);
-              // console.log('thisistyler: ', tyler);
-              // parser.parseString
-              let superParse;
-              parseString(stringRes, function (err, result) {
-                superParse = result.resultset.result;
-              });
-              console.log('hello: ', superParse);
-              fs.writeFileSync(path.resolve(__dirname, '../database/camp.json'), JSON.stringify(superParse));
-              console.log('writesuccess');
-              res.locals.wines = response.data.results;
-              return next();
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                state: this.state.state,
+                pet: this.state.pet,
+                waterFront: this.state.waterFront,
+                waterHook: this.state.waterHook,
+                sewerHook: this.state.sewerHook
             })
-            .catch(err => console.log('fileController.getWine: axios fetch error: ', err));
+        })
+        .then(res => res.json())
+        .then(data => {
+            const newState = Object.assign({}, this.state);
+            newState.queriedGrounds = data;
+            this.setState(newState);
+        })
     }
 
+    stateOnChange(e){
+        console.log('stateOnChange called')
+        const newState = Object.assign({}, this.state);
+        newState.state = e.target.value;
+        this.setState(newState);
+    }
+    
     petOnChange(){
         console.log('petOnChange called')
         if (this.state.pet === false){
@@ -149,33 +131,12 @@ class App extends Component {
         })
     }
 
-    query(){
-        fetch('/camp/query', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                pet: this.state.pet,
-                waterFront: this.state.waterFront,
-                waterHook: this.state.waterHook,
-                sewerHook: this.state.sewerHook
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            const newState = Object.assign({}, this.state);
-            newState.queriedGrounds = data;
-            this.setState(newState);
-        })
-    }
-
     render() {
         return(
             <div >
-                {/* <Query petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.queryCampground}/> */}
+                <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>
                 {/* <Landing /> */}
-                <Login login={this.login} />
+                {/* <Login login={this.login} /> */}
                 {/* <Results /> */}
             </div >
         )
