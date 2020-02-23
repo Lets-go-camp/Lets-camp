@@ -3,13 +3,13 @@ import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reac
 
 
 const Query = props => {
-  const { queryCampground, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
+  const { stateOnChange, queryCampground, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
   return (
       <Form className="Form" onSubmit= {queryCampground}>
         {/* <h1 className="text-muted">TITLE OF PAGE</h1> */}
         <FormGroup>
           <Label for="stateSelect">What state are you looking for?</Label>
-          <Input type="select" name="select" id="stateSelect" size="1">
+          <Input type="select" name="select" id="stateSelect" size="1" onChange={stateOnChange}>
             <option>AL</option>
             <option>AK</option>
             <option>AZ</option>

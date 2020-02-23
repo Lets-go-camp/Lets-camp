@@ -9,9 +9,11 @@ const campController={};
 
 campController.query = (req, res, next) => {
   console.log('entered campcontrollerquery')
-  const { pet, waterFront, waterHook, sewerHook } = req.body;
+  const { pet, waterFront, waterHook, sewerHook, state } = req.body;
 
-  let apiString = 'http://api.amp.active.com/camping/campgrounds?'
+  let apiString = 'http://api.amp.active.com/camping/campgrounds?pstate='
+  
+  apiString += state;
   if(pet === true){
       apiString +='&pets=3010'
   }
@@ -25,6 +27,7 @@ campController.query = (req, res, next) => {
       apiString += '&waterfront=3011'
   }
   apiString += '&api_key=';
+
   const campOptions = {
       url: apiString  += process.env.CAMPGROUND_KEY,
       method: 'GET',

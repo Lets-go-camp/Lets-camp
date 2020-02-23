@@ -18,6 +18,7 @@ class App extends Component {
 
         this.state = {
             pet: false,
+            state: "",
             sewerHook: false,
             waterHook: false,
             waterFront: false,
@@ -27,6 +28,7 @@ class App extends Component {
         this.waterHookOnChange = this.waterHookOnChange.bind(this)
         this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
         this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
+        this.stateOnChange = this.stateOnChange.bind(this)
         this.query = this.query.bind(this);
     }
 
@@ -39,6 +41,7 @@ class App extends Component {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                state: this.state.state,
                 pet: this.state.pet,
                 waterFront: this.state.waterFront,
                 waterHook: this.state.waterHook,
@@ -51,6 +54,13 @@ class App extends Component {
             newState.queriedGrounds = data;
             this.setState(newState);
         })
+    }
+
+    stateOnChange(e){
+        console.log('stateOnChange called')
+        const newState = Object.assign({}, this.state);
+        newState.state = e.target.value;
+        this.setState(newState);
     }
     
     petOnChange(){
@@ -124,7 +134,7 @@ class App extends Component {
     render() {
         return(
             <div >
-                <Query petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>
+                <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>
                 {/* <Landing /> */}
                 {/* <Login login={this.login} /> */}
                 {/* <Results /> */}
