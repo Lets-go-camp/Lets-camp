@@ -35,10 +35,13 @@ app.use(cookieParser());
 app.use('/user', userRouter);
 app.use('/camp', campRouter);
 
-app.get('/testenv', (req, res) => {
-  res.send(process.env.CAMPGROUND_KEY);
-})
-
+// app.post('/camp/query',
+//   // campController.query,
+//   (req, res) => {
+//     console.log('campjs line 9')
+//     res.sendStatus(200);
+//   }
+// )
 
 /**
  *  route handler to respond with main app 

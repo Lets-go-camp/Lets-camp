@@ -30,7 +30,9 @@ class App extends Component {
         this.query = this.query.bind(this);
     }
 
-    query(){
+    query(e){
+        e.preventDefault();
+        console.log('entered query')
         fetch('/camp/query', {
             method: 'POST',
             headers: {
@@ -122,9 +124,9 @@ class App extends Component {
     render() {
         return(
             <div >
-                {/* <Query petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.queryCampground}/> */}
+                <Query petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>
                 {/* <Landing /> */}
-                <Login login={this.login} />
+                {/* <Login login={this.login} /> */}
                 {/* <Results /> */}
             </div >
         )
