@@ -13,6 +13,7 @@ require('dotenv').config();
 * required router(s)
 */
 const userRouter = require('./routes/users.js');
+const campRouter = require('./routes/camp.js');
 
 
 
@@ -35,6 +36,8 @@ app.use(express.json());
  */
 
 app.use('/user', userRouter);
+app.use('/camp', userRouter);
+
 
 
 
