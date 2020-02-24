@@ -25,7 +25,9 @@ class App extends Component {
             waterHook: false,
             waterFront: false,
             queriedGrounds: [],
+            hasFavs: false,
         }
+        
         this.petOnChange = this.petOnChange.bind(this)
         this.waterHookOnChange = this.waterHookOnChange.bind(this)
         this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
@@ -146,7 +148,7 @@ class App extends Component {
         <Switch>
             <Route 
               exact path="/" 
-              render = {() => <Landing />}
+              render = {() => <Landing hasFavs={this.state.hasFavs}/>}
             />
             <Route 
               exact strict path="/user" 
