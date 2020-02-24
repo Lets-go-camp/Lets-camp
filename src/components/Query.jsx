@@ -22,7 +22,7 @@ const Query = props => {
       <Form className='Form' onSubmit={queryCampground}>
         {/* <h1 className="text-muted">TITLE OF PAGE</h1> */}
         <FormGroup className="states">
-          <Label for='stateSelect'>Where are you headed?</Label>
+          <Label className="header" for='stateSelect'><strong>Where are you headed?</strong></Label>
           <Input type='select' name='select' id='stateSelect' size='1' className="statesDrop" onChange={stateOnChange}>
             <option>AL</option>
             <option>AK</option>
@@ -77,7 +77,7 @@ const Query = props => {
           </Input>
         </FormGroup>
         <FormGroup tag='fieldset'>
-          <legend>What do you need? </legend>
+          <legend className="header"><strong>What do you need?</strong></legend>
           <FormGroup check>
             <Label check>
               <Input
@@ -124,7 +124,7 @@ const Query = props => {
           </FormGroup>
         </FormGroup>
         <Link to="/results">
-          <Button className="QueryButton">Let's Go</Button>
+          <Button className="QueryButton">Let's Go!</Button>
         </Link>
       </Form>
     </div>

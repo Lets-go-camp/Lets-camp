@@ -202,7 +202,7 @@ class App extends Component {
             />
             <Route 
               exact path="/results" 
-              render= {() => <Results />}
+              render= {() => <Results queriedGrounds={this.state.queriedGrounds} />}
             />
             <Route
               exact path="/signup"
