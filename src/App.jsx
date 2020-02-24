@@ -30,12 +30,13 @@ class App extends Component {
         loggedin: false,
     }
     
-    this.signup = this.signup.bind(this)
-    this.petOnChange = this.petOnChange.bind(this)
-    this.waterHookOnChange = this.waterHookOnChange.bind(this)
-    this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
-    this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
-    this.stateOnChange = this.stateOnChange.bind(this)
+    this.signup = this.signup.bind(this);
+    this.login = this.login.bind(this);
+    this.petOnChange = this.petOnChange.bind(this);
+    this.waterHookOnChange = this.waterHookOnChange.bind(this);
+    this.sewerHookOnChange = this.sewerHookOnChange.bind(this);
+    this.waterFrontOnChange = this.waterFrontOnChange.bind(this);
+    this.stateOnChange = this.stateOnChange.bind(this);
     this.query = this.query.bind(this);
   }
 
@@ -67,6 +68,32 @@ class App extends Component {
       }
     })
   } 
+
+  login(e){
+    e.preventDefault();
+    const user = e.target.email.value;
+    const pass = e.target.password.value;
+    console.log('login user: ', user);
+    console.log('login pass: ', pass);
+    fetch('/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: user,
+        password: pass
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data){
+        const newState = Object.assign({}, this.state)
+        newState.isloggedin = true;
+        this.setState(newState);
+      }
+    })
+  }
 
   query(e){
       e.preventDefault();
@@ -153,22 +180,6 @@ class App extends Component {
     }
   }
 
-  login(e){
-    const user = e.target.email.value;
-    const password = e.target.password.value;
-
-    fetch('/user/login', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          username: user,
-          password: password,
-      })
-    })
-  }
-
   render() {
     let loggedin = this.state.loggedin;
 
@@ -176,7 +187,7 @@ class App extends Component {
       <div className="container">
         <Switch>
             <Route exact path="/">
-              {loggedin ? <Landing hasFavs={this.state.hasFavs}/> : <Login />}
+              {loggedin ? <Landing hasFavs={this.state.hasFavs}/> : <Login login={this.login} />}
               {/* // render = {() => <Landing hasFavs={this.state.hasFavs}/>} */}
             </Route> 
             <Route 

@@ -16,11 +16,13 @@ import {
 } from 'reactstrap';
 
 const Login = props => {
+  
   const {login} = props;
   return (
     <div className="Login">
-      <Form className="Form">
-        <FormGroup onSubmit={login} >
+
+      <Form className="Form" onSubmit={login}>
+        <FormGroup>
           <Label for="email" hidden>Email</Label>
           <Input type="email" name="email" id="email" placeholder="Email" bsSize="large" />
         </FormGroup>
@@ -34,6 +36,7 @@ const Login = props => {
         <Button bssize="lg" outline color="primary" >Explore</Button>
         {/* <Button bssize="lg"className="LoginBtn" color="white" >Explore</Button> */}
       </Form>
+
     </div>
   );
 }
