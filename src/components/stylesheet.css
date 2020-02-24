@@ -91,7 +91,7 @@ body {
 }
 
 .Landing h1{
-  margin: 8% 0 15% 0;
+  margin: 2% 0 15% 0;
   font-size: 4em;
 }
 
@@ -150,8 +150,6 @@ body {
   flex-direction: column;
 }
 
-
-
 .QueryButton{
   background-color: whitesmoke;
   color: rgb(0, 70, 46);
@@ -173,6 +171,18 @@ body {
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Results h1 {
+  color: rgb(236, 234, 234);
+  text-shadow: -2px 0 rgb(0, 70, 46), 0 3px rgb(0, 70, 46), 3px 0 rgb(0, 70, 46), 0 -2px rgb(0, 70, 46);
+  font-size: 3.5em;
+  margin-top: 1%;
+  opacity: .8;
 }
 
 /* .queryContainer {

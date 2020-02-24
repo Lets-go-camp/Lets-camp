@@ -20,7 +20,7 @@ const Results = props => {
   const results = []
   return (
       <div className="Results">
-        <span>Results</span>
+        <h1>Your Next Adventure Awaits</h1>
         {results}
       </div>
   );

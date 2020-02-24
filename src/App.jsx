@@ -175,9 +175,9 @@ class App extends Component {
             <div className="container">
                 {/* <Query petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.queryCampground}/> */}
                 {/* <Signup /> */}
-                <Landing />
+                {/* <Landing /> */}
                 {/* <Login login={this.login} /> */}
-                {/* <Results /> */}
+                <Results />
             </div >
         )
     }
