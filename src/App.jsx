@@ -50,6 +50,8 @@ class App extends Component {
         })
         .then(res => res.json())
         .then(data => {
+            console.log('abc');
+            console.log(JSON.stringify(data));
             const newState = Object.assign({}, this.state);
             newState.queriedGrounds = data;
             this.setState(newState);

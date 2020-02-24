@@ -38,17 +38,20 @@ campController.query = (req, res, next) => {
     }
     axios(campOptions)
       .then(response => {
-        console.log(campOptions);
-        console.log(response);
+        // console.log(campOptions);
+        // console.log(response);
         const stringRes = response.data;
         let superParse;
         parseString(stringRes, function (err, result) {
           superParse = result.resultset.result;
         });
-        console.log('this is superParse: ', superParse);
+        // console.log('this is superParse: ', superParse);
         fs.writeFileSync(path.resolve(__dirname, '../database/camp.json'), JSON.stringify(superParse));
         console.log('writesuccess');
-        res.locals.campgrounds = response.data.results;
+        // console.log('resdataresults: ', response.data.results);
+        const arrData = Object.values(superParse);
+        console.log(arrData + 'abc');
+        res.locals.campgrounds = arrData;
         return next();
       })
       .catch(err => console.log('fileController.getWine: axios fetch error: ', err));
