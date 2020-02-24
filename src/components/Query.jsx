@@ -123,7 +123,7 @@ const Query = props => {
             </Label>
           </FormGroup>
         </FormGroup>
-        <Link to="/landing">
+        <Link to="/results">
           <Button className="QueryButton">Let's Go</Button>
         </Link>
       </Form>

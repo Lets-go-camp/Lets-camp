@@ -4,7 +4,7 @@ import Query from './components/Query.jsx';
 import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx'
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import Signup from './components/Signup.jsx'
 // import { Button } from 'reactstrap';
 
@@ -65,6 +65,8 @@ class App extends Component {
         const newState = Object.assign({}, this.state)
         newState.loggedIn = true;
         this.setState(newState);
+        console.log(this.state.loggedIn);
+        console.log('signup complete');
       }
     })
   } 
@@ -200,12 +202,16 @@ class App extends Component {
               render= {() => <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
             />
             <Route 
-              exact path="/landing" 
+              exact path="/results" 
               render= {() => <Results />}
             />
             <Route
               exact path="/signup"
               render = {() =>  <Signup signup={this.signup} />}
+            />
+            <Route
+              exact path="/landing"
+              render = {() =>  <Landing hasFavs={this.state.hasFavs}/>}
             />
         </Switch>
         <ul>
