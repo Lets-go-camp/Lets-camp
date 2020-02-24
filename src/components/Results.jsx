@@ -19,8 +19,8 @@ const Results = props => {
 
   const results = []
   return (
-      <div>
-        <span>Results</span>
+      <div className="Results">
+        <h1>Your Next Adventure Awaits</h1>
         {results}
       </div>
   );
