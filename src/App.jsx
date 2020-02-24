@@ -3,9 +3,7 @@ import axios from 'axios';
 import Query from './components/Query.jsx';
 import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
-import Results from './components/Results.jsx';
-import Signup from './components/Signup.jsx';
-import {Switch, Route} from 'react-router-dom';
+import Results from './components/Results.jsx'
 // import { Button } from 'reactstrap';
 
 
@@ -18,51 +16,47 @@ class App extends Component {
   constructor(props){
       super(props);
 
-      this.state = {
-          pet: false,
-          state: "",
-          sewerHook: false,
-          waterHook: false,
-          waterFront: false,
-          queriedGrounds: [],
-          favoriteGrounds: [],
-      }
-      this.query = this.query.bind(this);
-      this.stateOnChange = this.stateOnChange.bind(this)
-      this.petOnChange = this.petOnChange.bind(this)
-      this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
-      this.waterHookOnChange = this.waterHookOnChange.bind(this)
-      this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
-  }
+        this.state = {
+            pet: false,
+            state: "",
+            sewerHook: false,
+            waterHook: false,
+            waterFront: false,
+            queriedGrounds: [],
+        }
+        this.petOnChange = this.petOnChange.bind(this)
+        this.waterHookOnChange = this.waterHookOnChange.bind(this)
+        this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
+        this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
+        this.stateOnChange = this.stateOnChange.bind(this)
+        this.query = this.query.bind(this);
+    }
 
-  componentDidMount(){
-
-  }
-
-  //this function is called when users complete the query selection form
-  query(e){
-    e.preventDefault();
-    console.log('entered query')
-    fetch('/camp/query', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        state: this.state.state,
-        pet: this.state.pet,
-        waterFront: this.state.waterFront,
-        waterHook: this.state.waterHook,
-        sewerHook: this.state.sewerHook
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-      const newState = Object.assign({}, this.state);
-      newState.queriedGrounds = data;
-      this.setState(newState);
-    })
-  }
+    query(e){
+        e.preventDefault();
+        console.log('entered query')
+        fetch('/camp/query', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                state: this.state.state,
+                pet: this.state.pet,
+                waterFront: this.state.waterFront,
+                waterHook: this.state.waterHook,
+                sewerHook: this.state.sewerHook
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('abc');
+            console.log(JSON.stringify(data));
+            const newState = Object.assign({}, this.state);
+            newState.queriedGrounds = data;
+            this.setState(newState);
+        })
+    }
 
   stateOnChange(e){
     console.log('stateOnChange called')
@@ -142,23 +136,33 @@ class App extends Component {
   render() {
     return(
       <div >
-        <Switch>
+        {/* <Switch>
             <Route 
               exact path="/" 
-              render = {(props) => <Login {...props} login={this.login}/>}
+              render = {() => <Landing />}
             />
             <Route 
               exact strict path="/user" 
-              render= {(props) => <Login {...props} login={this.login}/>}
+              render= {() => <Login login={this.login}/>}
             />
             <Route 
               exact path="/camp" 
-              render= {(props) => <Query {...props} stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
+              render= {() => <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
             />
             <Route 
               exact path="/landing" 
               render= {() => <Results />}
             />
+        </Switch> */}
+        <Switch>
+          <Route 
+              exact path="/" 
+              render = {() => <Landing />}
+          />
+          <Landing />,
+          <Login login={this.login}/>,
+          <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>,
+          <Results />,
         </Switch>
       </div >
     )
