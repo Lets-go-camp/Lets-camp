@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
+import {
+  Container,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from 'reactstrap';
 
 const Query = props => {
   const { stateOnChange, queryCampground, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
   return (
-      <Form className="Form" onSubmit= {queryCampground}>
+    <div className='Query'>
+      <Form className='Form' onSubmit={queryCampground}>
         {/* <h1 className="text-muted">TITLE OF PAGE</h1> */}
-        <FormGroup>
-          <Label for="stateSelect">What state are you looking for?</Label>
-          <Input type="select" name="select" id="stateSelect" size="1" onChange={stateOnChange}>
+        <FormGroup className="states">
+          <Label for='stateSelect'>Where are you headed?</Label>
+          <Input type='select' name='select' id='stateSelect' size='1' className="statesDrop" onChange={stateOnChange}>
             <option>AL</option>
             <option>AK</option>
             <option>AZ</option>
@@ -62,36 +70,57 @@ const Query = props => {
             <option>WY</option>
           </Input>
         </FormGroup>
-        <FormGroup tag="fieldset">
-          <legend>How Can We Help? </legend>
+        <FormGroup tag='fieldset'>
+          <legend>What do you need? </legend>
           <FormGroup check>
             <Label check>
-              <Input type="radio" name="radio1" id="pet" onChange={petOnChange} />{' '}
-                Pet friendly?
+              <Input
+                type='radio'
+                name='radio1'
+                id='pet'
+                onChange={petOnChange}
+              />{' '}
+              Pet friendly?
             </Label>
           </FormGroup>
           <FormGroup check>
             <Label check>
-              <Input type="radio" name="radio2" id="sewerHook" onChange={sewerHookOnChange}/>{' '}
-                Need a sewer hook-up?
+              <Input
+                type='radio'
+                name='radio2'
+                id='sewerHook'
+                onChange={sewerHookOnChange}
+              />{' '}
+              Need a sewer hook-up?
             </Label>
           </FormGroup>
           <FormGroup check>
             <Label check>
-              <Input type="radio" name="radio3" id="waterHook" onChange={waterHookOnChange}/>{' '}
-                Need a water hook-up?
+              <Input
+                type='radio'
+                name='radio3'
+                id='waterHook'
+                onChange={waterHookOnChange}
+              />{' '}
+              Need a water hook-up?
             </Label>
           </FormGroup>
           <FormGroup check>
             <Label check>
-              <Input type="radio" name="radio4" id="waterFront" onChange={waterFrontOnChange}/>{' '}
+              <Input
+                type='radio'
+                name='radio4'
+                id='waterFront'
+                onChange={waterFrontOnChange}
+              />{' '}
               Waterfront?
             </Label>
           </FormGroup>
-          </FormGroup>
-        <Button color="primary">Submit</Button>
+        </FormGroup>
+        <Button className="QueryButton">Let's Go</Button>
       </Form>
+    </div>
   );
-}
+};
 
 export default Query;

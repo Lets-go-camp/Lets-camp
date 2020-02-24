@@ -5,6 +5,7 @@ import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx'
 import { Link, Route, Switch } from 'react-router-dom';
+import Signup from './components/Signup.jsx'
 // import { Button } from 'reactstrap';
 
 
@@ -136,7 +137,7 @@ class App extends Component {
 
   render() {
     return(
-      <div >
+      <div className="container">
          <ul>
           <li><Link to="/user">Login</Link></li>
           <li><Link to="/camp">Query</Link></li>
@@ -159,6 +160,7 @@ class App extends Component {
               exact path="/landing" 
               render= {() => <Results />}
             />
+            <Signup />
         </Switch>
       </div >
     )
