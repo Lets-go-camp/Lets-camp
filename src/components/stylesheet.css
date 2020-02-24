@@ -16,6 +16,40 @@ body {
   /* flex-direction: column;
   align-items: center; */
 }
+
+.Signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Signup Form {
+  width: 30%; 
+}
+
+.Signup Input {
+  font-size: 1.4em;
+  opacity: 0.6;
+  margin-Top: 1em;
+  border: 1px solid #989898;
+}
+
+.Signup Button {
+  font-size: 1.3em;
+  opacity: 0.8;
+  color: whitesmoke;
+  background-color: rgb(0, 68, 51);
+  border: whitesmoke;
+}
+
+.Signup Button:hover {
+  opacity: 0.6;
+  color: rgb(0, 68, 51);
+  background-color: whitesmoke;
+  border: whitesmoke;
+}
+
 .Login {
   background: url('../assets/MountainTentLg.jpg') no-repeat center center fixed; 
   position: fixed; 
@@ -58,7 +92,7 @@ body {
 }
 
 .Signup {
-  background: url('../assets/RV.jpg') no-repeat center center fixed;
+  background: url('../assets/RVLg.jpg') no-repeat center center fixed;
   position: fixed; 
   top: 0; 
   left: 0; 

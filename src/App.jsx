@@ -4,6 +4,7 @@ import Query from './components/Query.jsx';
 import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx'
+import Signup from './components/Signup.jsx'
 // import { Button } from 'reactstrap';
 
 
@@ -174,10 +175,10 @@ class App extends Component {
         return(
             <div className="container">
                 {/* <Query petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.queryCampground}/> */}
-                {/* <Signup /> */}
+                <Signup />
                 {/* <Landing /> */}
                 {/* <Login login={this.login} /> */}
-                <Results />
+                {/* <Results /> */}
             </div >
         )
     }
