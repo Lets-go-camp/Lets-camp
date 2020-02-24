@@ -15,7 +15,6 @@ userController.login = async (req, res, next) => {
   const text = `SELECT * FROM "user" WHERE username = $1`
   const values = [user];
 
-
   await db.query(text,values, (err, data) => {
     if(err) {
         console.log(err);
@@ -85,8 +84,8 @@ userController.addCampground = (req, res, next) => {
 }
 
 userController.addFav = (req, res, next) => {
-  const user = JSON.stringify(req.body.username);
-  const campground = JSON.stringify(req.body.campground);
+  const user = req.body.username;
+  const campground = req.body.campground;
 
   const text = `INSERT INTO "Favorites" (Campground_id, user_id) VALUES ($1,$2)`;
   const values = [campground, user];
@@ -103,7 +102,7 @@ userController.addFav = (req, res, next) => {
 
 
 userController.getFav = (req, res, next) => {
-  const user = JSON.stringify(req.body.username);
+  const user = req.body.username;
 
   const text = `SELECT * FROM campground WHERE campground_id in
   (

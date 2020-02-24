@@ -187,7 +187,6 @@ class App extends Component {
 
   render() {
 
-
     let loggedin = this.state.loggedIn;
 
     return(
