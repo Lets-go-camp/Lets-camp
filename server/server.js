@@ -48,7 +48,8 @@ app.use('/camp', campRouter);
  */
 
  app.get('/*', (req, res) => {
-   res.status(200).sendFile(path.join(__dirname, '../src/index.html'))
+   console.log('yenaishelpful')
+   res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'))
  })
 
 
