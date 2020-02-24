@@ -11,9 +11,13 @@ campController.query = (req, res, next) => {
   console.log('entered campcontrollerquery')
   const { pet, waterFront, waterHook, sewerHook, state } = req.body;
 
+  //this logic builds our api query string based upon the parameters passed back
+  //to the server by our React App query page.
+
   let apiString = 'http://api.amp.active.com/camping/campgrounds?pstate='
   
   apiString += state;
+  
   if(pet === true){
       apiString +='&pets=3010'
   }
@@ -29,32 +33,30 @@ campController.query = (req, res, next) => {
   apiString += '&api_key=';
 
   const campOptions = {
-      url: apiString  += process.env.CAMPGROUND_KEY,
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8',
-      }
+    url: apiString  += process.env.CAMPGROUND_KEY,
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json;charset=UTF-8',
     }
-    axios(campOptions)
-      .then(response => {
-        // console.log(campOptions);
-        // console.log(response);
-        const stringRes = response.data;
-        let superParse;
-        parseString(stringRes, function (err, result) {
-          superParse = result.resultset.result;
-        });
-        // console.log('this is superParse: ', superParse);
-        fs.writeFileSync(path.resolve(__dirname, '../database/camp.json'), JSON.stringify(superParse));
-        console.log('writesuccess');
-        // console.log('resdataresults: ', response.data.results);
-        const arrData = Object.values(superParse);
-        console.log(arrData + 'abc');
-        res.locals.campgrounds = arrData;
-        return next();
-      })
-      .catch(err => console.log('fileController.getWine: axios fetch error: ', err));
+  }
+
+  axios(campOptions)
+    .then(response => {
+      // this logic parses our XML response into JSON for use by the front end. 
+      // res.locals.campground is set to an array of objects matching our query parameters
+      const stringRes = response.data;
+      let superParse;
+      parseString(stringRes, function (err, result) {
+        superParse = result.resultset.result;
+      });
+      fs.writeFileSync(path.resolve(__dirname, '../database/camp.json'), JSON.stringify(superParse));
+      console.log('writesuccess');
+      const arrData = superParse.map((curr) => curr["$"])
+      res.locals.campgrounds = arrData;
+      return next();
+    })
+    .catch(err => console.log('fileController.getWine: axios fetch error: ', err));
 }
 
 module.exports = campController;
