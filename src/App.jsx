@@ -4,7 +4,7 @@ import Query from './components/Query.jsx';
 import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx'
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import Signup from './components/Signup.jsx'
 // import { Button } from 'reactstrap';
 
@@ -16,51 +16,115 @@ const parseString = require('xml2js').parseString;
 
 class App extends Component {
   constructor(props){
-      super(props);
+    super(props);
 
-        this.state = {
-            pet: false,
-            state: "",
-            sewerHook: false,
-            waterHook: false,
-            waterFront: false,
-            queriedGrounds: [],
-            hasFavs: false,
-        }
-        
-        this.petOnChange = this.petOnChange.bind(this)
-        this.waterHookOnChange = this.waterHookOnChange.bind(this)
-        this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
-        this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
-        this.stateOnChange = this.stateOnChange.bind(this)
-        this.query = this.query.bind(this);
-    }
+    this.state = {
+        pet: false,
+        state: "",
+        sewerHook: false,
+        waterHook: false,
+        waterFront: false,
 
-    query(e){
-        e.preventDefault();
-        console.log('entered query')
-        fetch('/camp/query', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                state: this.state.state,
-                pet: this.state.pet,
-                waterFront: this.state.waterFront,
-                waterHook: this.state.waterHook,
-                sewerHook: this.state.sewerHook
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('abc');
-            console.log(JSON.stringify(data));
-            const newState = Object.assign({}, this.state);
-            newState.queriedGrounds = data;
-            this.setState(newState);
-        })
+        queriedGrounds: [],
+        hasFavs: false,
+        loggedIn: false,
     }
+    
+    this.signup = this.signup.bind(this);
+    this.login = this.login.bind(this);
+    this.petOnChange = this.petOnChange.bind(this);
+    this.waterHookOnChange = this.waterHookOnChange.bind(this);
+    this.sewerHookOnChange = this.sewerHookOnChange.bind(this);
+    this.waterFrontOnChange = this.waterFrontOnChange.bind(this);
+    this.stateOnChange = this.stateOnChange.bind(this);
+    this.query = this.query.bind(this);
+  }
+
+  componentDidMount(){
+    console.log('mounted');
+  }
+
+  signup(e){
+    e.preventDefault();
+    const user = e.target.email.value;
+    const pass = e.target.password.value;
+    console.log('entered signup');
+    fetch('/user/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: user,
+        password: pass
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data){
+        const newState = Object.assign({}, this.state)
+        newState.loggedIn = true;
+        this.setState(newState);
+        console.log(this.state.loggedIn);
+        console.log('signup complete');
+      }
+    })
+  } 
+
+  login(e){
+    e.preventDefault();
+    const user = e.target.email.value;
+    const pass = e.target.password.value;
+    console.log('login user: ', user);
+    console.log('login pass: ', pass);
+    fetch('/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: user,
+        password: pass
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data){
+        const newState = Object.assign({}, this.state)
+        newState.loggedIn = true;
+        console.log('in here')
+        this.setState(newState);
+        console.log(this.state.loggedIn)
+        console.log('reset state');
+      }
+    })
+  }
+
+  query(e){
+    e.preventDefault();
+    console.log('entered query')
+    fetch('/camp/query', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        state: this.state.state,
+        pet: this.state.pet,
+        waterFront: this.state.waterFront,
+        waterHook: this.state.waterHook,
+        sewerHook: this.state.sewerHook
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('abc');
+      console.log(JSON.stringify(data));
+      const newState = Object.assign({}, this.state);
+      newState.queriedGrounds = data;
+      this.setState(newState);
+    })
+  }
 
   stateOnChange(e){
     console.log('stateOnChange called')
@@ -121,55 +185,39 @@ class App extends Component {
     }
   }
 
-  login(e){
-    const user = e.target.email.value;
-    const password = e.target.password.value;
-
-    fetch('/user/login', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          username: user,
-          password: password,
-      })
-    })
-  }
-
   render() {
+
+    let loggedin = this.state.loggedIn;
+
     return(
       <div className="container">
-         {/* <ul>
-          <li><Link to="/user">Login</Link></li>
-          <li><Link to="/camp">Query</Link></li>
-          <li><Link to="/landing">Results</Link></li>
-        </ul>
         <Switch>
-            <Route 
-              exact path="/" 
-              render = {() => <Landing hasFavs={this.state.hasFavs}/>}
-            />
-            <Route 
-              exact strict path="/user" 
-              render= {() => <Login login={this.login}/>}
-            />
+            <Route exact path="/">
+              {loggedin ? <Landing hasFavs={this.state.hasFavs}/> : <Login login={this.login} />}
+              {/* // render = {() => <Landing hasFavs={this.state.hasFavs}/>} */}
+            </Route> 
             <Route 
               exact path="/camp" 
               render= {() => <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
             />
             <Route 
-              exact path="/landing" 
-              render= {() => <Results queriedGrounds={this.state.queriedGrounds}/>}
+              exact path="/results" 
+              render= {() => <Results queriedGrounds={this.state.queriedGrounds} />}
             />
-            <Signup />
-        </Switch> */}
-        {/* <Login login={this.login}/> */}
-        {/* <Signup /> */}
-        {/* <Landing hasFavs={this.state.hasFavs}/> */}
-        {/* <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/> */}
-        <Results queriedGrounds={this.state.queriedGrounds}/>
-        {/* <Login /> */}
+            <Route
+              exact path="/signup"
+              render = {() =>  <Signup signup={this.signup} />}
+            />
+            <Route
+              exact path="/landing"
+              render = {() =>  <Landing hasFavs={this.state.hasFavs}/>}
+            />
+        </Switch>
+        <ul>
+          <li><Link to="/user">Login</Link></li>
+          <li><Link to="/camp">Query</Link></li>
+          <li><Link to="/landing">Results</Link></li>
+        </ul>
       </div >
     )
   }
