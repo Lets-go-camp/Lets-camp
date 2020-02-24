@@ -18,8 +18,7 @@ import {
 const Signup = props => {
   const {signup} = props;
   return (
-    <div className="Signup">
-        
+    <div className="Signup"> 
       <Form className="Form" onSubmit={signup}>
         <FormGroup>
           <Label for="email" hidden>Email</Label>
@@ -29,8 +28,9 @@ const Signup = props => {
           <Label for="password" hidden>Password</Label>
           <Input type="password" name="password" id="password" placeholder="Password" bsSize="large" />
         </FormGroup>
-        <Button bssize="lg" outline color="secondary" >Get Started </Button>
-        {/* <Button bssize="lg"className="SignupBtn" color="white" >Explore</Button> */}
+        {/* <Link to="/"> */}
+          <Button value="Submit" bssize="lg" outline color="secondary" >Get Started </Button>
+        {/* </Link> */}
       </Form>
     </div>
   );

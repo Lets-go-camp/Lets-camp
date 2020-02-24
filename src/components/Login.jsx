@@ -20,7 +20,6 @@ const Login = props => {
   const {login} = props;
   return (
     <div className="Login">
-
       <Form className="Form" onSubmit={login}>
         <FormGroup>
           <Label for="email" hidden>Email</Label>
@@ -36,7 +35,6 @@ const Login = props => {
         <Button bssize="lg" outline color="primary" >Explore</Button>
         {/* <Button bssize="lg"className="LoginBtn" color="white" >Explore</Button> */}
       </Form>
-
     </div>
   );
 }

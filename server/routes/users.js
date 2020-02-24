@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-router.get('/login', userController.login, userController.getFav, (req, res) => {
-    res.status(200).json()
+router.post('/login', userController.login, /*userController.getFav,*/ (req, res) => {
+    console.log('outside of login middleware')
+    res.status(200).json(res.locals.user)
 });
 
 router.post('/signup',  userController.createUser, (req, res) => {
-    res.status(200).json()
+    res.status(200).json(res.locals)
 });
 
 router.get('/favorite', userController.getFav, (req, res) => {

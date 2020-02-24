@@ -27,7 +27,7 @@ class App extends Component {
 
         queriedGrounds: [],
         hasFavs: false,
-        loggedin: false,
+        loggedIn: false,
     }
     
     this.signup = this.signup.bind(this);
@@ -40,7 +40,7 @@ class App extends Component {
     this.query = this.query.bind(this);
   }
 
-  componentDidUpdate(){
+  componentDidMount(){
     console.log('mounted');
   }
 
@@ -63,7 +63,7 @@ class App extends Component {
     .then(data => {
       if(data){
         const newState = Object.assign({}, this.state)
-        newState.isloggedin = true;
+        newState.loggedIn = true;
         this.setState(newState);
       }
     })
@@ -89,36 +89,39 @@ class App extends Component {
     .then(data => {
       if(data){
         const newState = Object.assign({}, this.state)
-        newState.isloggedin = true;
+        newState.loggedIn = true;
+        console.log('in here')
         this.setState(newState);
+        console.log(this.state.loggedIn)
+        console.log('reset state');
       }
     })
   }
 
   query(e){
-      e.preventDefault();
-      console.log('entered query')
-      fetch('/camp/query', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              state: this.state.state,
-              pet: this.state.pet,
-              waterFront: this.state.waterFront,
-              waterHook: this.state.waterHook,
-              sewerHook: this.state.sewerHook
-          })
+    e.preventDefault();
+    console.log('entered query')
+    fetch('/camp/query', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        state: this.state.state,
+        pet: this.state.pet,
+        waterFront: this.state.waterFront,
+        waterHook: this.state.waterHook,
+        sewerHook: this.state.sewerHook
       })
-      .then(res => res.json())
-      .then(data => {
-          console.log('abc');
-          console.log(JSON.stringify(data));
-          const newState = Object.assign({}, this.state);
-          newState.queriedGrounds = data;
-          this.setState(newState);
-      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('abc');
+      console.log(JSON.stringify(data));
+      const newState = Object.assign({}, this.state);
+      newState.queriedGrounds = data;
+      this.setState(newState);
+    })
   }
 
   stateOnChange(e){
@@ -181,7 +184,9 @@ class App extends Component {
   }
 
   render() {
-    let loggedin = this.state.loggedin;
+
+
+    let loggedin = this.state.loggedIn;
 
     return(
       <div className="container">
