@@ -19,7 +19,7 @@ const Results = props => {
 
   const results = []
   return (
-      <div>
+      <div className="Results">
         <span>Results</span>
         {results}
       </div>

@@ -18,6 +18,7 @@ import {
 const Login = props => {
   const {login} = props;
   return (
+    <div className="Login">
       <Form className="Form">
         <FormGroup onSubmit={login} >
           <Label for="email" hidden>Email</Label>
@@ -30,6 +31,7 @@ const Login = props => {
         </FormGroup>
         <Button bssize="lg"className="LoginBtn">Submit</Button>
       </Form>
+    </div>
   );
 }
 
