@@ -167,8 +167,8 @@ class App extends Component {
         {/* <Login login={this.login}/> */}
         {/* <Signup /> */}
         {/* <Landing hasFavs={this.state.hasFavs}/> */}
-        <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>
-        {/* <Results queriedGrounds={this.state.queriedGrounds}/> */}
+        {/* <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/> */}
+        <Results queriedGrounds={this.state.queriedGrounds}/>
         {/* <Login /> */}
       </div >
     )

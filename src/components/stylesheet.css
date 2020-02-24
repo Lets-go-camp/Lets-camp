@@ -223,6 +223,7 @@
   /* text-shadow: -2px 0 teal, 0 3px teal, 3px 0 teal, 0 -2px teal; */
   font-size: 3.5em;
   margin-top: 5%;
+  margin-bottom: 5%;
   opacity: .8;
 }
 
@@ -235,6 +236,18 @@
   margin-right: 4%;
   background-color: whitesmoke;
   opacity: 0.8;
+}
+
+.Table {
+  width: 60%;
+  color: whitesmoke;
+}
+
+thead {
+  font-size: 1.1em;
+  opacity: 0.9;
+  text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34), 1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
+  opacity: 0.9;
 }
 
 .findMore {

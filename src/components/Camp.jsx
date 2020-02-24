@@ -1,56 +1,39 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
-import { 
-  Container, 
-  Button, 
-  Form, 
-  FormGroup, 
-  Label, 
-  Input, 
-  FormText 
+  Container,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Table
 } from 'reactstrap';
 
 const Camp = props => {
+    const { camp } = props;
+    const name = camp[0];
+    const pets = camp[1];
+    const sewerHook = camp[2];
+    const waterHook = camp[3];
+    const longitude = camp[4];
+    const latitude = camp[5];
+    const waterfront = camp[6]
 
-  return (
-      <div className="Camp">
-          <Table hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </Table>
-      </div>
-  );
-}
+    return (
+        <ReactFragment className="CampFrag">
+            <tr className="CampRow">
+                <td>{name}</td>
+                <td>{pets}</td>
+                <td>{sewerHook}</td>
+                <td>{waterHook}</td>
+                <td>{waterfront}</td>
+                <td>{longitude}</td>
+                <td>{latitude}</td>
+            </tr>
+        </ReactFragment>
+    )
+};
 
 export default Camp;
