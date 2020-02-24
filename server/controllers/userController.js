@@ -9,44 +9,28 @@ userController.login = async (req, res, next) => {
   const user = req.body.username;
   const password = req.body.password;
 
-  const text = `SELECT * from users WHERE userName = $1`
-  const values = [user]
+  const text = `SELECT * FROM "user" WHERE username = $1`
+  const values = [user];
+
+
   await db.query(text,values, (err, data) => {
     if(err) {
-      console.log(err);
+        console.log(err);
         return next(err)
     }
     else {
       if(data.rows[0].password !== password) {
         console.log('password did not match')
+        return next(err)
       }
       else {
         res.locals.user = data.rows[0]
+        return next()
       }
     }
   })
-
-  const newQuery = `UPDATE users SET session = true WHERE username = $1`
-
-  db.query(newQuery,values, (err, data) => {
-    if(err){
-      console.log(err)
-      return next(err)
-    }
-    else {
-      console.log('isupdating')
-      return next();
-    }
-    })
 }
 
-userController.loginVerify = (req, res, next) => {
-
-}
-
-userController.updateUser = (req, res, next) => {
-
-}
 
 userController.deleteUser = (req, res, next) => {
   const user = JSON.stringify(req.body.username);
@@ -73,10 +57,7 @@ userController.createUser = (req, res, next) => {
   const user = JSON.stringify(req.body.username);
   const password = JSON.stringify(req.body.password);
 
-  console.log(user, 'this is user');
-  console.log('this is req.body: ', req.body);
-
-  const text = `INSERT INTO Users (username, password, loggedin) VALUES ($1, $2, $3)`;
+  const text = `INSERT INTO "user" (username, password, loggedin) VALUES ($1, $2, $3)`;
   const values = [user, password, true];
 
   db.query(text,values)

@@ -4,7 +4,7 @@ const path = require('path');
 const fileController = {};
 
 
-//we are currently not using this file as we do not have any middleward saved here
+//we are currently not using this file as we do not have any middleware saved here
 
 
 /* fileController.---------- = (req, res, next) => {
