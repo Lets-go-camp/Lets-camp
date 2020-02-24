@@ -10,20 +10,14 @@ import {
 } from 'reactstrap';
 
 const Query = props => {
-  const {
-    queryCampground,
-    petOnChange,
-    waterHookOnChange,
-    sewerHookOnChange,
-    waterFrontOnChange
-  } = props;
+  const { stateOnChange, queryCampground, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
   return (
     <div className='Query'>
       <Form className='Form' onSubmit={queryCampground}>
         {/* <h1 className="text-muted">TITLE OF PAGE</h1> */}
         <FormGroup className="states">
           <Label for='stateSelect'>Where are you headed?</Label>
-          <Input type='select' name='select' id='stateSelect' size='1' className="statesDrop">
+          <Input type='select' name='select' id='stateSelect' size='1' className="statesDrop" onChange={stateOnChange}>
             <option>AL</option>
             <option>AK</option>
             <option>AZ</option>
