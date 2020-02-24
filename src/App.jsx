@@ -137,6 +137,11 @@ class App extends Component {
   render() {
     return(
       <div >
+         <ul>
+          <li><Link to="/user">Login</Link></li>
+          <li><Link to="/camp">Query</Link></li>
+          <li><Link to="/landing">Results</Link></li>
+        </ul>
         <Switch>
             <Route 
               exact path="/" 
