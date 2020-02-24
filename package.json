@@ -68,6 +68,7 @@
     "jquery": "^3.4.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "reactstrap": "^8.4.1",
     "xml2js": "^0.4.23"

@@ -4,6 +4,7 @@ import Query from './components/Query.jsx';
 import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx'
+import { Link, Route, Switch } from 'react-router-dom';
 // import { Button } from 'reactstrap';
 
 
@@ -136,7 +137,7 @@ class App extends Component {
   render() {
     return(
       <div >
-        {/* <Switch>
+        <Switch>
             <Route 
               exact path="/" 
               render = {() => <Landing />}
@@ -153,16 +154,6 @@ class App extends Component {
               exact path="/landing" 
               render= {() => <Results />}
             />
-        </Switch> */}
-        <Switch>
-          <Route 
-              exact path="/" 
-              render = {() => <Landing />}
-          />
-          <Landing />,
-          <Login login={this.login}/>,
-          <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>,
-          <Results />,
         </Switch>
       </div >
     )
