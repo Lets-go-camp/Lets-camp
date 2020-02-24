@@ -9,9 +9,11 @@ userController.login = async (req, res, next) => {
   const user = req.body.username;
   const password = req.body.password;
 
+  console.log('expresslogin user: ', user)
+  console.log('expresslogin pass: ', password)
+
   const text = `SELECT * FROM "user" WHERE username = $1`
   const values = [user];
-
 
   await db.query(text,values, (err, data) => {
     if(err) {
@@ -19,6 +21,7 @@ userController.login = async (req, res, next) => {
         return next(err)
     }
     else {
+      console.log('data from postgres: ',data);
       if(data.rows[0].password !== password) {
         console.log('password did not match')
         return next(err)
@@ -55,8 +58,11 @@ userController.deleteUser = (req, res, next) => {
 
 
 userController.createUser = (req, res, next) => {
-  const user = JSON.stringify(req.body.username);
-  const password = JSON.stringify(req.body.password);
+  const user = req.body.username;
+  const password = req.body.password;
+
+  console.log('expresscreate user: ', user)
+  console.log('expresscreate pass: ', password)
 
   const text = `INSERT INTO "user" (username, password, loggedin) VALUES ($1, $2, $3)`;
   const values = [user, password, true];
@@ -78,8 +84,8 @@ userController.addCampground = (req, res, next) => {
 }
 
 userController.addFav = (req, res, next) => {
-  const user = JSON.stringify(req.body.username);
-  const campground = JSON.stringify(req.body.campground);
+  const user = req.body.username;
+  const campground = req.body.campground;
 
   const text = `INSERT INTO "Favorites" (Campground_id, user_id) VALUES ($1,$2)`;
   const values = [campground, user];
@@ -96,7 +102,7 @@ userController.addFav = (req, res, next) => {
 
 
 userController.getFav = (req, res, next) => {
-  const user = JSON.stringify(req.body.username);
+  const user = req.body.username;
 
   const text = `SELECT * FROM campground WHERE campground_id in
   (

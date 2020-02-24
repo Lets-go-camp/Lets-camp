@@ -46,11 +46,12 @@ app.use('/camp', campRouter);
 /**
  *  route handler to respond with main app 
  */
+app.use('/dist', express.static(path.join(__dirname, '../dist')))
 
-//  app.get('/*', (req, res) => {
-//    console.log('yenaishelpful')
-//    res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'))
-//  })
+ app.get('/*', (req, res) => {
+  //  console.log('yenaishelpful')
+   res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'))
+ })
 
 
 // //this is the error handler
