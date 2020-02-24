@@ -9,49 +9,34 @@ userController.login = async (req, res, next) => {
   const user = req.body.username;
   const password = req.body.password;
 
-  const text = `SELECT * from users WHERE userName = $1`
-  const values = [user]
+  const text = `SELECT * FROM "user" WHERE username = $1`
+  const values = [user];
+
+
   await db.query(text,values, (err, data) => {
     if(err) {
-      console.log(err);
+        console.log(err);
         return next(err)
     }
     else {
       if(data.rows[0].password !== password) {
         console.log('password did not match')
+        return next(err)
       }
       else {
         res.locals.user = data.rows[0]
+        console.log(res.locals, 'this is locals inside login middleware')
+        return next()
       }
     }
   })
-
-  const newQuery = `UPDATE users SET session = true WHERE username = $1`
-
-  db.query(newQuery,values, (err, data) => {
-    if(err){
-      console.log(err)
-      return next(err)
-    }
-    else {
-      console.log('isupdating')
-      return next();
-    }
-    })
 }
 
-userController.loginVerify = (req, res, next) => {
-
-}
-
-userController.updateUser = (req, res, next) => {
-
-}
 
 userController.deleteUser = (req, res, next) => {
   const user = JSON.stringify(req.body.username);
 
-  const text = `DELETE FROM user WHERE name = $1`
+  const text = `DELETE FROM "user" WHERE username = $1`
   const value = [user]
 
   db.query(text, value, (err, data) => {
@@ -73,10 +58,7 @@ userController.createUser = (req, res, next) => {
   const user = JSON.stringify(req.body.username);
   const password = JSON.stringify(req.body.password);
 
-  console.log(user, 'this is user');
-  console.log('this is req.body: ', req.body);
-
-  const text = `INSERT INTO Users (username, password, loggedin) VALUES ($1, $2, $3)`;
+  const text = `INSERT INTO "user" (username, password, loggedin) VALUES ($1, $2, $3)`;
   const values = [user, password, true];
 
   db.query(text,values)
@@ -91,17 +73,19 @@ userController.createUser = (req, res, next) => {
   }) 
 }
 
+userController.addCampground = (req, res, next) => {
 
+}
 
 userController.addFav = (req, res, next) => {
   const user = JSON.stringify(req.body.username);
+  const campground = JSON.stringify(req.body.campground);
 
-  const text = `INSERT INTO favorites (user_id, campground_id) VALUES ($1,$2)`;
-  const values = [user,campground];
+  const text = `INSERT INTO "Favorites" (Campground_id, user_id) VALUES ($1,$2)`;
+  const values = [campground, user];
 
   db.query(text,values)
   .then((response) => {
-    console.log('this is from userController.addFav')
     return next();
   })
   .catch(err => {
@@ -131,6 +115,11 @@ userController.getFav = (req, res, next) => {
     return next(err)
   }) 
 }
+
+// userController.deleteFav = (req, res, next) => {
+
+// }
+
 
 
 
