@@ -4,6 +4,7 @@ import Query from './components/Query.jsx';
 import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx'
+import { Link, Route, Switch } from 'react-router-dom';
 import Signup from './components/Signup.jsx'
 // import { Button } from 'reactstrap';
 
@@ -14,8 +15,8 @@ const parseString = require('xml2js').parseString;
 
 
 class App extends Component {
-    constructor(props){
-        super(props);
+  constructor(props){
+      super(props);
 
         this.state = {
             pet: false,
@@ -24,7 +25,9 @@ class App extends Component {
             waterHook: false,
             waterFront: false,
             queriedGrounds: [],
+            hasFavs: false,
         }
+        
         this.petOnChange = this.petOnChange.bind(this)
         this.waterHookOnChange = this.waterHookOnChange.bind(this)
         this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
@@ -51,98 +54,119 @@ class App extends Component {
         })
         .then(res => res.json())
         .then(data => {
+            console.log('abc');
+            console.log(JSON.stringify(data));
             const newState = Object.assign({}, this.state);
             newState.queriedGrounds = data;
             this.setState(newState);
         })
     }
 
-    stateOnChange(e){
-        console.log('stateOnChange called')
-        const newState = Object.assign({}, this.state);
-        newState.state = e.target.value;
-        this.setState(newState);
+  stateOnChange(e){
+    console.log('stateOnChange called')
+    const newState = Object.assign({}, this.state);
+    newState.state = e.target.value;
+    this.setState(newState);
+  }
+  
+  petOnChange(){
+    console.log('petOnChange called')
+    if (this.state.pet === false){
+      const newState = Object.assign({}, this.state)
+      newState.pet = true;
+      this.setState(newState)
+    } else {
+      const newState = Object.assign({}, this.state)
+      newState.pet = false;
+      this.setState(newState)
     }
-    
-    petOnChange(){
-        console.log('petOnChange called')
-        if (this.state.pet === false){
-            const newState = Object.assign({}, this.state)
-            newState.pet = true;
-            this.setState(newState)
-        } else {
-            const newState = Object.assign({}, this.state)
-            newState.pet = false;
-            this.setState(newState)
-        }
+  }
+  
+  sewerHookOnChange(){
+    console.log('sewerHookOnChange called')
+    if (this.state.sewerHook === false){
+      const newState = Object.assign({}, this.state)
+      newState.sewerHook = true;
+      this.setState(newState)
+    } else {
+      const newState = Object.assign({}, this.state)
+      newState.sewerHook = false;
+      this.setState(newState)
     }
-    
-    sewerHookOnChange(){
-        console.log('sewerHookOnChange called')
-        if (this.state.sewerHook === false){
-            const newState = Object.assign({}, this.state)
-            newState.sewerHook = true;
-            this.setState(newState)
-        } else {
-            const newState = Object.assign({}, this.state)
-            newState.sewerHook = false;
-            this.setState(newState)
-        }
-    }
+  }
 
-    waterHookOnChange(){
-        console.log('waterHookOnChange called')
-        if (this.state.waterHook === false){
-            const newState = Object.assign({}, this.state)
-            newState.waterHook = true;
-            this.setState(newState)
-        } else {
-            const newState = Object.assign({}, this.state)
-            newState.waterHook = false;
-            this.setState(newState)
-        }
+  waterHookOnChange(){
+    console.log('waterHookOnChange called')
+    if (this.state.waterHook === false){
+      const newState = Object.assign({}, this.state)
+      newState.waterHook = true;
+      this.setState(newState)
+    } else {
+      const newState = Object.assign({}, this.state)
+      newState.waterHook = false;
+      this.setState(newState)
     }
-    
-    waterFrontOnChange(){
-        console.log('waterFrontOnChange called')
-        if (this.state.waterFront === false){
-            const newState = Object.assign({}, this.state)
-            newState.waterFront = true;
-            this.setState(newState)
-        } else {
-            const newState = Object.assign({}, this.state)
-            newState.waterFront = false;
-            this.setState(newState)
-        }
+  }
+  
+  waterFrontOnChange(){
+    console.log('waterFrontOnChange called')
+    if (this.state.waterFront === false){
+      const newState = Object.assign({}, this.state)
+      newState.waterFront = true;
+      this.setState(newState)
+    } else {
+      const newState = Object.assign({}, this.state)
+      newState.waterFront = false;
+      this.setState(newState)
     }
+  }
 
-    login(e){
-        const user = e.target.email.value;
-        const password = e.target.password.value;
+  login(e){
+    const user = e.target.email.value;
+    const password = e.target.password.value;
 
-        fetch('/user/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: user,
-                password: password,
-            })
-        })
-    }
+    fetch('/user/login', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          username: user,
+          password: password,
+      })
+    })
+  }
 
-    render() {
-        return(
-            <div className="container">
-                {/* <Query petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.queryCampground}/> */}
-                <Signup />
-                {/* <Landing /> */}
-                {/* <Login login={this.login} /> */}
-                {/* <Results /> */}
-            </div >
-        )
-    }
+  render() {
+    return(
+      <div className="container">
+         <ul>
+          <li><Link to="/user">Login</Link></li>
+          <li><Link to="/camp">Query</Link></li>
+          <li><Link to="/landing">Results</Link></li>
+        </ul>
+        <Switch>
+            <Route 
+              exact path="/" 
+              render = {() => <Landing hasFavs={this.state.hasFavs}/>}
+            />
+            <Route 
+              exact strict path="/user" 
+              render= {() => <Login login={this.login}/>}
+            />
+            <Route 
+              exact path="/camp" 
+              render= {() => <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
+            />
+            <Route 
+              exact path="/landing" 
+              render= {() => <Results />}
+            />
+            <Signup />
+        </Switch>
+      </div >
+    )
+  }
 }
 
 export default App;

@@ -47,6 +47,11 @@ app.use('/camp', campRouter);
  *  route handler to respond with main app 
  */
 
+//  app.get('/*', (req, res) => {
+//    console.log('yenaishelpful')
+//    res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'))
+//  })
+
 
 // //this is the error handler
 function logErrors (err, req, res, next) {

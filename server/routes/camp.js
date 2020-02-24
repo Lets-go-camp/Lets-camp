@@ -6,7 +6,8 @@ const camp = express.Router();
 camp.post('/query',
   campController.query,
   (req, res) => {
-    console.log('campjs line 9')
+    // console.log('campjs line 9')
+    res.status(200).json(res.locals.campgrounds)
   }
 )
 

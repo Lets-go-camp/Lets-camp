@@ -36,18 +36,22 @@ module.exports = {
      * to localhost:3000/api/* (where our Express server is running)
      */
     proxy: {
-      '/camp': {
+      '/': {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      '/api/**': {
+      '/camp':{
         target: 'http://localhost:3000/',
         secure: false,
       },
-      '/assets/**': {
-        target: 'http://localhost:3000/',
-        secure: false,
-      },
+      // '/api/**': {
+      //   target: 'http://localhost:3000/',
+      //   secure: false,
+      // },
+      // '/assets/**': {
+      //   target: 'http://localhost:3000/',
+      //   secure: false,
+      // },
     },
   },
 //   //this node was added to fix fs and net errors
