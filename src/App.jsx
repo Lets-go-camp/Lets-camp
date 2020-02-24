@@ -16,52 +16,83 @@ const parseString = require('xml2js').parseString;
 
 class App extends Component {
   constructor(props){
-      super(props);
+    super(props);
 
-        this.state = {
-            pet: false,
-            state: "",
-            sewerHook: false,
-            waterHook: false,
-            waterFront: false,
-            queriedGrounds: [],
-            hasFavs: false,
-            loggedin: true,
-        }
-        
-        this.petOnChange = this.petOnChange.bind(this)
-        this.waterHookOnChange = this.waterHookOnChange.bind(this)
-        this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
-        this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
-        this.stateOnChange = this.stateOnChange.bind(this)
-        this.query = this.query.bind(this);
-    }
+    this.state = {
+        pet: false,
+        state: "",
+        sewerHook: false,
+        waterHook: false,
+        waterFront: false,
 
-    query(e){
-        e.preventDefault();
-        console.log('entered query')
-        fetch('/camp/query', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                state: this.state.state,
-                pet: this.state.pet,
-                waterFront: this.state.waterFront,
-                waterHook: this.state.waterHook,
-                sewerHook: this.state.sewerHook
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('abc');
-            console.log(JSON.stringify(data));
-            const newState = Object.assign({}, this.state);
-            newState.queriedGrounds = data;
-            this.setState(newState);
-        })
+        queriedGrounds: [],
+        hasFavs: false,
+        loggedin: false,
     }
+    
+    this.signup = this.signup.bind(this)
+    this.petOnChange = this.petOnChange.bind(this)
+    this.waterHookOnChange = this.waterHookOnChange.bind(this)
+    this.sewerHookOnChange = this.sewerHookOnChange.bind(this)
+    this.waterFrontOnChange = this.waterFrontOnChange.bind(this)
+    this.stateOnChange = this.stateOnChange.bind(this)
+    this.query = this.query.bind(this);
+  }
+
+  componentDidUpdate(){
+    console.log('mounted');
+  }
+
+  signup(e){
+    e.preventDefault();
+    const user = e.target.email.value;
+    const pass = e.target.password.value;
+    console.log('entered signup');
+    fetch('/user/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: user,
+        password: pass
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data){
+        const newState = Object.assign({}, this.state)
+        newState.isloggedin = true;
+        this.setState(newState);
+      }
+    })
+  } 
+
+  query(e){
+      e.preventDefault();
+      console.log('entered query')
+      fetch('/camp/query', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              state: this.state.state,
+              pet: this.state.pet,
+              waterFront: this.state.waterFront,
+              waterHook: this.state.waterHook,
+              sewerHook: this.state.sewerHook
+          })
+      })
+      .then(res => res.json())
+      .then(data => {
+          console.log('abc');
+          console.log(JSON.stringify(data));
+          const newState = Object.assign({}, this.state);
+          newState.queriedGrounds = data;
+          this.setState(newState);
+      })
+  }
 
   stateOnChange(e){
     console.log('stateOnChange called')
@@ -145,13 +176,9 @@ class App extends Component {
       <div className="container">
         <Switch>
             <Route exact path="/">
-              {loggedin ? <Landing /> : <Login />}
+              {loggedin ? <Landing hasFavs={this.state.hasFavs}/> : <Login />}
               {/* // render = {() => <Landing hasFavs={this.state.hasFavs}/>} */}
             </Route> 
-            {/* <Route 
-              exact strict path="/user" 
-              render= {() => <Login login={this.login}/>}
-            /> */}
             <Route 
               exact path="/camp" 
               render= {() => <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
@@ -160,8 +187,10 @@ class App extends Component {
               exact path="/landing" 
               render= {() => <Results />}
             />
-            <Landing hasFavs={this.state.hasFavs}/>
-            <Signup />
+            <Route
+              exact path="/signup"
+              render = {() =>  <Signup signup={this.signup} />}
+            />
         </Switch>
         <ul>
           <li><Link to="/user">Login</Link></li>

@@ -20,8 +20,8 @@ const Signup = props => {
   return (
     <div className="Signup">
         
-      <Form className="Form">
-        <FormGroup onSubmit={Signup} >
+      <Form className="Form" onSubmit={signup}>
+        <FormGroup>
           <Label for="email" hidden>Email</Label>
           <Input type="email" name="email" id="email" placeholder="Email" bsSize="large" />
         </FormGroup>
