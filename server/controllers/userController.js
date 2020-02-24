@@ -25,6 +25,7 @@ userController.login = async (req, res, next) => {
       }
       else {
         res.locals.user = data.rows[0]
+        console.log(res.locals, 'this is locals inside login middleware')
         return next()
       }
     }
@@ -35,7 +36,7 @@ userController.login = async (req, res, next) => {
 userController.deleteUser = (req, res, next) => {
   const user = JSON.stringify(req.body.username);
 
-  const text = `DELETE FROM user WHERE name = $1`
+  const text = `DELETE FROM "user" WHERE username = $1`
   const value = [user]
 
   db.query(text, value, (err, data) => {
@@ -72,17 +73,19 @@ userController.createUser = (req, res, next) => {
   }) 
 }
 
+userController.addCampground = (req, res, next) => {
 
+}
 
 userController.addFav = (req, res, next) => {
   const user = JSON.stringify(req.body.username);
+  const campground = JSON.stringify(req.body.campground);
 
-  const text = `INSERT INTO favorites (user_id, campground_id) VALUES ($1,$2)`;
-  const values = [user,campground];
+  const text = `INSERT INTO "Favorites" (Campground_id, user_id) VALUES ($1,$2)`;
+  const values = [campground, user];
 
   db.query(text,values)
   .then((response) => {
-    console.log('this is from userController.addFav')
     return next();
   })
   .catch(err => {
@@ -112,6 +115,11 @@ userController.getFav = (req, res, next) => {
     return next(err)
   }) 
 }
+
+// userController.deleteFav = (req, res, next) => {
+
+// }
+
 
 
 
