@@ -25,7 +25,38 @@ body {
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.Login Form{
+  width: 30%;
+}
+
+.Login Input {
+  font-size: 1.4em;
+  opacity: 0.6;
+  margin-Top: 1em;
+  border: 1px solid #989898;
+}
+
+.Login a {
+  margin-left: 70%;
+  /* color: rgb(25, 90, 143); */
+  font-size: 1.1em;
+  /* opacity: 0.6; */
+}
+
+.Login Button {
+  font-size: 1.3em;
+  opacity: 0.8;
+  color: whitesmoke;
+  background-color: rgb(25, 90, 143);
+}
+
 .Signup {
   background: url('../assets/RV.jpg') no-repeat center center fixed;
   position: fixed; 
@@ -35,6 +66,7 @@ body {
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
+
 }
 .Landing {
   background: url('../assets/CampingConstellationsLg.jpg') no-repeat center center fixed;

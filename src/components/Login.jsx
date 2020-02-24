@@ -27,9 +27,10 @@ const Login = props => {
         <FormGroup>
           <Label for="password" hidden>Password</Label>
           <Input type="password" name="password" id="password" placeholder="Password" bsSize="large" />
-          <a href="./Signup.jsx" className="signup">signup now</a>
+          <a href="./Signup.jsx"  color="primary" className="signup">signup now</a>
         </FormGroup>
-        <Button bssize="lg"className="LoginBtn">Submit</Button>
+        <Button bssize="lg" outline color="primary" >Explore</Button>
+        {/* <Button bssize="lg"className="LoginBtn" color="white" >Explore</Button> */}
       </Form>
     </div>
   );
