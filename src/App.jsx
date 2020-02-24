@@ -26,6 +26,7 @@ class App extends Component {
             waterFront: false,
             queriedGrounds: [],
             hasFavs: false,
+            loggedin: true,
         }
         
         this.petOnChange = this.petOnChange.bind(this)
@@ -138,22 +139,19 @@ class App extends Component {
   }
 
   render() {
+    let loggedin = this.state.loggedin;
+
     return(
       <div className="container">
-         <ul>
-          <li><Link to="/user">Login</Link></li>
-          <li><Link to="/camp">Query</Link></li>
-          <li><Link to="/landing">Results</Link></li>
-        </ul>
         <Switch>
-            <Route 
-              exact path="/" 
-              render = {() => <Landing hasFavs={this.state.hasFavs}/>}
-            />
-            <Route 
+            <Route exact path="/">
+              {loggedin ? <Landing /> : <Login />}
+              {/* // render = {() => <Landing hasFavs={this.state.hasFavs}/>} */}
+            </Route> 
+            {/* <Route 
               exact strict path="/user" 
               render= {() => <Login login={this.login}/>}
-            />
+            /> */}
             <Route 
               exact path="/camp" 
               render= {() => <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
@@ -162,8 +160,14 @@ class App extends Component {
               exact path="/landing" 
               render= {() => <Results />}
             />
+            <Landing hasFavs={this.state.hasFavs}/>
             <Signup />
         </Switch>
+        <ul>
+          <li><Link to="/user">Login</Link></li>
+          <li><Link to="/camp">Query</Link></li>
+          <li><Link to="/landing">Results</Link></li>
+        </ul>
       </div >
     )
   }

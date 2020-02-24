@@ -8,6 +8,12 @@ import {
   Input,
   FormText
 } from 'reactstrap';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
 
 const Query = props => {
   const { stateOnChange, queryCampground, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
@@ -117,7 +123,9 @@ const Query = props => {
             </Label>
           </FormGroup>
         </FormGroup>
-        <Button className="QueryButton">Let's Go</Button>
+        <Link to="/landing">
+          <Button className="QueryButton">Let's Go</Button>
+        </Link>
       </Form>
     </div>
   );
