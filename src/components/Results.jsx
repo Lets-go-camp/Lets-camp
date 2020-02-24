@@ -16,12 +16,35 @@ import {
 } from 'reactstrap';
 
 const Results = props => {
+  const { queriedGrounds } = props;
 
-  const results = []
+  let homeButton;
+  if(results.length > 0){
+    homeButton = <Button className="findMore" color="secondary" >Find More </Button>;
+  }
+
+  
+  const results = queryResults.map(camp => {
+    <Camp camp={camp}/>
+  }) 
   return (
       <div className="Results">
         <h1>Your Next Adventure Awaits</h1>
-        {results}
+        <Button className="returnHome" outline color="info">Return Home </Button>
+        <Table hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          {results}
+        </tbody>
+      </Table>
+        {homeButton}
       </div>
   );
 }

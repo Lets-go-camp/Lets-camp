@@ -140,7 +140,7 @@ class App extends Component {
   render() {
     return(
       <div className="container">
-         <ul>
+         {/* <ul>
           <li><Link to="/user">Login</Link></li>
           <li><Link to="/camp">Query</Link></li>
           <li><Link to="/landing">Results</Link></li>
@@ -160,10 +160,16 @@ class App extends Component {
             />
             <Route 
               exact path="/landing" 
-              render= {() => <Results />}
+              render= {() => <Results queriedGrounds={this.state.queriedGrounds}/>}
             />
             <Signup />
-        </Switch>
+        </Switch> */}
+        {/* <Login login={this.login}/> */}
+        {/* <Signup /> */}
+        {/* <Landing hasFavs={this.state.hasFavs}/> */}
+        <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>
+        {/* <Results queriedGrounds={this.state.queriedGrounds}/> */}
+        {/* <Login /> */}
       </div >
     )
   }
