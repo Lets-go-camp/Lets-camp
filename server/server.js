@@ -35,21 +35,15 @@ app.use(cookieParser());
 app.use('/user', userRouter);
 app.use('/camp', campRouter);
 
-// app.post('/camp/query',
-//   // campController.query,
-//   (req, res) => {
-//     console.log('campjs line 9')
-//     res.sendStatus(200);
-//   }
-// )
-
 /**
  *  route handler to respond with main app 
  */
+
+ //this serves up our static assets in dist.
 app.use('/dist', express.static(path.join(__dirname, '../dist')))
 
+
  app.get('/*', (req, res) => {
-  //  console.log('yenaishelpful')
    res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'))
  })
 
