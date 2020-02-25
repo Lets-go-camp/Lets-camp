@@ -18,6 +18,18 @@ const Camp = props => {
     const { camp } = props;
     const { facilityName , latitude, longitude, sitesWithPetsAllowed, sitesWithSewerHookup, sitesWithWaterHookup, sitesWithWaterFront, state} = camp;
 
+    let star;
+
+    // if(star.isFav){
+    //     star = solidStar
+    // } else {
+    //     star = regStar
+    // }
+
+    let FavIcon;
+    if (isFav) FavIcon = (<span className="favIcon"><FAIcon onClick={() => favClicked(id)} icon={solidStar} style={{ color: 'steelblue' }} /></span>);
+    else FavIcon = (<span className="favIcon"><FAIcon onClick={() => favClicked(id)} icon={regStar} /></span>);
+
     return (
         // <ReactFragment className="CampFrag">
             <tr className="CampRow">
@@ -28,6 +40,7 @@ const Camp = props => {
                 <td>{sitesWithWaterFront}</td>
                 <td>{longitude}</td>
                 <td>{latitude}</td>
+                <td>{FavIcon}</td>
             </tr>
         // </ReactFragment>
     )
