@@ -3,36 +3,33 @@ import axios from 'axios';
 import Query from './components/Query.jsx';
 import Landing from './components/Landing.jsx';
 import Login from './components/Login.jsx';
-import Results from './components/Results.jsx'
+import Results from './components/Results.jsx';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
-import Signup from './components/Signup.jsx'
+import Signup from './components/Signup.jsx';
 // import { Button } from 'reactstrap';
 
-
-import './components/stylesheet.css'
+import './components/stylesheet.css';
 
 const parseString = require('xml2js').parseString;
 
-
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-        pet: false,
-        state: "",
-        sewerHook: false,
-        waterHook: false,
-        waterFront: false,
+      pet: false,
+      state: '',
+      sewerHook: false,
+      waterHook: false,
+      waterFront: false,
 
-        queriedGrounds: [],
-        queried: false,
-        hasFavs: false,
-        loggedIn: false,
-        signedUp: false,
+      queriedGrounds: [],
+      queried: false,
+      hasFavs: false,
+      loggedIn: false,
+      signedUp: false
+    };
 
-    }
-    
     this.signup = this.signup.bind(this);
     this.login = this.login.bind(this);
     this.petOnChange = this.petOnChange.bind(this);
@@ -43,11 +40,11 @@ class App extends Component {
     this.query = this.query.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log('mounted');
   }
 
-  signup(e){
+  signup(e) {
     e.preventDefault();
     const user = e.target.email.value;
     const pass = e.target.password.value;
@@ -62,19 +59,19 @@ class App extends Component {
         password: pass
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data){
-        const newState = Object.assign({}, this.state)
-        newState.signedUp = true;
-        this.setState(newState);
-        console.log(this.state.signedUp);
-        console.log('signup complete');
-      }
-    })
-  } 
+      .then(res => res.json())
+      .then(data => {
+        if (data) {
+          const newState = Object.assign({}, this.state);
+          newState.signedUp = true;
+          this.setState(newState);
+          console.log(this.state.signedUp);
+          console.log('signup complete');
+        }
+      });
+  }
 
-  login(e){
+  login(e) {
     e.preventDefault();
     const user = e.target.email.value;
     const pass = e.target.password.value;
@@ -90,23 +87,23 @@ class App extends Component {
         password: pass
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data){
-        const newState = Object.assign({}, this.state)
-        newState.loggedIn = true;
-        console.log('in here')
-        this.setState(newState);
-        console.log(this.state.loggedIn)
-        console.log('reset state');
-      }
-    })
+      .then(res => res.json())
+      .then(data => {
+        if (data) {
+          const newState = Object.assign({}, this.state);
+          newState.loggedIn = true;
+          console.log('in here');
+          this.setState(newState);
+          console.log(this.state.loggedIn);
+          console.log('reset state');
+        }
+      });
   }
 
-  query(e){
+  query(e) {
     e.preventDefault();
     console.log(e.target);
-    console.log('entered query')
+    console.log('entered query');
     fetch('/camp/query', {
       method: 'POST',
       headers: {
@@ -120,110 +117,132 @@ class App extends Component {
         sewerHook: this.state.sewerHook
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      const newState = Object.assign({}, this.state);
-      newState.queriedGrounds = data;
-      newState.queried = true;
-      console.log(newState)
-      this.setState(newState);
-    })
+      .then(res => res.json())
+      .then(data => {
+        const newState = Object.assign({}, this.state);
+        newState.queriedGrounds = data;
+        newState.queried = true;
+        console.log(newState);
+        this.setState(newState);
+      });
   }
 
-  stateOnChange(e){
-    console.log('stateOnChange called')
+  stateOnChange(e) {
+    console.log('stateOnChange called');
     const newState = Object.assign({}, this.state);
     newState.state = e.target.value;
     this.setState(newState);
   }
-  
-  petOnChange(){
-    console.log('petOnChange called')
-    if (this.state.pet === false){
-      const newState = Object.assign({}, this.state)
+
+  petOnChange() {
+    console.log('petOnChange called');
+    if (this.state.pet === false) {
+      const newState = Object.assign({}, this.state);
       newState.pet = true;
-      this.setState(newState)
+      this.setState(newState);
     } else {
-      const newState = Object.assign({}, this.state)
+      const newState = Object.assign({}, this.state);
       newState.pet = false;
-      this.setState(newState)
-    }
-  }
-  
-  sewerHookOnChange(){
-    console.log('sewerHookOnChange called')
-    if (this.state.sewerHook === false){
-      const newState = Object.assign({}, this.state)
-      newState.sewerHook = true;
-      this.setState(newState)
-    } else {
-      const newState = Object.assign({}, this.state)
-      newState.sewerHook = false;
-      this.setState(newState)
+      this.setState(newState);
     }
   }
 
-  waterHookOnChange(){
-    console.log('waterHookOnChange called')
-    if (this.state.waterHook === false){
-      const newState = Object.assign({}, this.state)
-      newState.waterHook = true;
-      this.setState(newState)
+  sewerHookOnChange() {
+    console.log('sewerHookOnChange called');
+    if (this.state.sewerHook === false) {
+      const newState = Object.assign({}, this.state);
+      newState.sewerHook = true;
+      this.setState(newState);
     } else {
-      const newState = Object.assign({}, this.state)
-      newState.waterHook = false;
-      this.setState(newState)
+      const newState = Object.assign({}, this.state);
+      newState.sewerHook = false;
+      this.setState(newState);
     }
   }
-  
-  waterFrontOnChange(){
-    console.log('waterFrontOnChange called')
-    if (this.state.waterFront === false){
-      const newState = Object.assign({}, this.state)
-      newState.waterFront = true;
-      this.setState(newState)
+
+  waterHookOnChange() {
+    console.log('waterHookOnChange called');
+    if (this.state.waterHook === false) {
+      const newState = Object.assign({}, this.state);
+      newState.waterHook = true;
+      this.setState(newState);
     } else {
-      const newState = Object.assign({}, this.state)
+      const newState = Object.assign({}, this.state);
+      newState.waterHook = false;
+      this.setState(newState);
+    }
+  }
+
+  waterFrontOnChange() {
+    console.log('waterFrontOnChange called');
+    if (this.state.waterFront === false) {
+      const newState = Object.assign({}, this.state);
+      newState.waterFront = true;
+      this.setState(newState);
+    } else {
+      const newState = Object.assign({}, this.state);
       newState.waterFront = false;
-      this.setState(newState)
+      this.setState(newState);
     }
   }
 
   render() {
-
     let loggedin = this.state.loggedIn;
     let queryResponse = this.state.queried;
     let signedUp = this.state.signedUp;
 
-    return(
-      <div className="container">
+    return (
+      <div className='container'>
         <Switch>
-            <Route exact path="/">
-              {loggedin ? <Landing hasFavs={this.state.hasFavs}/> : <Login login={this.login} />}
-              {/* // render = {() => <Landing hasFavs={this.state.hasFavs}/>} */}
-            </Route> 
-            <Route exact path="/camp"> 
-              {queryResponse ? <Redirect to='/results'/> : <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} query={this.query}/>}
-            </Route>
-            <Route 
-              exact path="/results" 
-              render= {() => <Results queriedGrounds={this.state.queriedGrounds} />}
-            />
-            <Route exact path="/signup">
-              {signedUp ? <Landing hasFavs={this.state.hasFavs}/> : <Signup signup={this.signup}/>}
-            </Route>
-            <Route exact path="/landing">
-              {queryResponse ? <Redirect to='/results'/> : <Login login={this.login} />}
-              render = {() =>  <Landing hasFavs={this.state.hasFavs}/>}
-            </Route>
+          <Route exact path='/'>
+            {loggedin ? (
+              <Landing hasFavs={this.state.hasFavs} />
+            ) : (
+              <Login login={this.login} />
+            )}
+          </Route>
+          <Route exact path='/camp'>
+            {queryResponse ? (
+              <Redirect to='/results' />
+            ) : (
+              <Query
+                stateOnChange={this.stateOnChange}
+                petOnChange={this.petOnChange}
+                waterHookOnChange={this.waterHookOnChange}
+                sewerHookOnChange={this.sewerHookOnChange}
+                waterFrontOnChange={this.waterFrontOnChange}
+                query={this.query}
+              />
+            )}
+          </Route>
+          <Route
+            exact
+            path='/results'
+            render={() => (
+              <Results queriedGrounds={this.state.queriedGrounds} />
+            )}
+          />
+          <Route exact path='/signup'>
+            {signedUp ? (
+              <Landing hasFavs={this.state.hasFavs} />
+            ) : (
+              <Signup signup={this.signup} />
+            )}
+          </Route>
+          <Route exact path='/landing'>
+            {queryResponse ? (
+              <Redirect to='/results' />
+            ) : (
+              <Login login={this.login} />
+            )}
+            render = {() => <Landing hasFavs={this.state.hasFavs} />}
+          </Route>
+          <Route exact path='/landing/ayypresent'>
+            <Landing hasFavs={this.state.hasFavs} />
+          </Route>
         </Switch>
-        <ul>
-          <li><Link to="/user">Login</Link></li>
-          <li><Link to="/camp">Query</Link></li>
-          <li><Link to="/landing">Results</Link></li>
-        </ul>
-      </div >
-    )
+      </div>
+    );
   }
 }
 

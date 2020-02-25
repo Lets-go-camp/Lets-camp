@@ -122,11 +122,20 @@ userController.getFav = (req, res, next) => {
   }) 
 }
 
-// userController.deleteFav = (req, res, next) => {
-
-// }
-
-
-
+userController.deleteFav = (req, res, next) => {
+  const user = JSON.stringify(req.body.username);
+  const campground = JSON.stringify(req.body.campground);
+  const text = `DELETE FROM favorites
+  WHERE campground_id = $1 AND user_id = $2`;
+  const values = [campground, user];
+  db.query(text,values)
+  .then((response) => {
+    return next();
+  })
+  .catch(err => {
+    console.log('Error: ',err);
+    return next(err)
+  });
+}
 
 module.exports = userController 
