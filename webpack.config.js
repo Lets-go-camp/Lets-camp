@@ -15,20 +15,20 @@ module.exports = {
   devtool: 'eval-source-map',
   mode: 'development',
   devServer: {
-    host: 'localhost',
-    port: 8080,
-    // match the output path
-    contentBase: path.resolve(__dirname, 'dist'),
-    // enable HMR on the devServer
-    hot: true,
-    // match the output 'publicPath'
-    publicPath: '/',
-    // fallback to root for other urls
-    historyApiFallback: true,
+    // host: 'localhost',
+    // port: 8080,
+    // // match the output path
+    // contentBase: path.resolve(__dirname, 'dist'),
+    // // enable HMR on the devServer
+    // hot: true,
+    // // match the output 'publicPath'
+    // publicPath: '/',
+    // // fallback to root for other urls
+    // historyApiFallback: true,
 
-    inline: true,
+    // inline: true,
 
-    headers: { 'Access-Control-Allow-Origin': '*' },
+    // headers: { 'Access-Control-Allow-Origin': '*' },
     /**
      * proxy is required in order to make api calls to
      * express server while using hot-reload webpack server
@@ -36,14 +36,22 @@ module.exports = {
      * to localhost:3000/api/* (where our Express server is running)
      */
     proxy: {
-      '/api/**': {
+      '/': {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      '/assets/**': {
+      '/camp':{
         target: 'http://localhost:3000/',
         secure: false,
       },
+      // '/api/**': {
+      //   target: 'http://localhost:3000/',
+      //   secure: false,
+      // },
+      // '/assets/**': {
+      //   target: 'http://localhost:3000/',
+      //   secure: false,
+      // },
     },
   },
 //   //this node was added to fix fs and net errors
@@ -68,8 +76,25 @@ module.exports = {
       },
       {
         test: /.(css|scss)$/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        // exclude: /node_modules/,
+        // use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [{
+          loader: 'style-loader', // inject CSS to page
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS modules
+        }, {
+          loader: 'postcss-loader', // Run post css actions
+          options: {
+            plugins: function () { // post css plugins, can be exported to postcss.config.js
+              return [
+                require('precss'),
+                require('autoprefixer')
+              ];
+            }
+          }
+        }, {
+          loader: 'sass-loader' // compiles Sass to CSS
+        }]
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
