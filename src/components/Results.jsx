@@ -52,7 +52,7 @@ const Results = props => {
       <div className="Results">
         <h1>Your Next Adventure Awaits</h1>
         <Button className="returnHome" outline color="info">Return Home </Button>
-        <Table hover>
+        <Table >
         <thead>
           <tr>
             <th>Camp</th>
@@ -62,6 +62,7 @@ const Results = props => {
             <th>waterfront</th>
             <th>Longitude</th>
             <th>Latitude</th>
+            <th>Favorite</th>
           </tr>
         </thead>
         <tbody>

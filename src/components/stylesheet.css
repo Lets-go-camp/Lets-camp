@@ -76,7 +76,7 @@
 }
 
 .Login a {
-  margin-left: 70%;
+  margin-left: 35%;
   /* color: rgb(25, 90, 143); */
   font-size: 1.1em;
   /* opacity: 0.6; */
@@ -238,21 +238,33 @@
   opacity: 0.8;
 }
 
-.Table {
+Table {
   width: 60%;
   color: whitesmoke;
+  overflow: scroll;
 }
 
 thead {
-  font-size: 1.1em;
+  color: whitesmoke;
+  font-size: 1.5em;
+  text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34), 1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
   opacity: 0.9;
+}
+
+.CampRow {
+  color: whitesmoke;
+  font-size: 1.2em;
   text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34), 1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
   opacity: 0.9;
 }
 
 .findMore {
-  
+  font-size: 1.2em;
   opacity: 0.8;
+}
+
+td .form-check-input{
+  margin-left: 3%;
 }
 
 /* .queryContainer {

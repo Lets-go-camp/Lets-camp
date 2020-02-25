@@ -200,7 +200,6 @@ class App extends Component {
         <Switch>
             <Route exact path="/">
               {loggedin ? <Landing hasFavs={this.state.hasFavs}/> : <Login login={this.login} />}
-              {/* // render = {() => <Landing hasFavs={this.state.hasFavs}/>} */}
             </Route> 
             <Route exact path="/camp"> 
               {queryResponse ? <Redirect to='/results'/> : <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} query={this.query}/>}
@@ -217,11 +216,6 @@ class App extends Component {
               render = {() =>  <Landing hasFavs={this.state.hasFavs}/>}
             </Route>
         </Switch>
-        <ul>
-          <li><Link to="/user">Login</Link></li>
-          <li><Link to="/camp">Query</Link></li>
-          <li><Link to="/landing">Results</Link></li>
-        </ul>
       </div >
     )
   }
