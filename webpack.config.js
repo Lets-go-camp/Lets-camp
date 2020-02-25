@@ -15,20 +15,20 @@ module.exports = {
   devtool: 'eval-source-map',
   mode: 'development',
   devServer: {
-    // host: 'localhost',
-    // port: 8080,
-    // // match the output path
-    // contentBase: path.resolve(__dirname, 'dist'),
-    // // enable HMR on the devServer
-    // hot: true,
-    // // match the output 'publicPath'
-    // publicPath: '/',
-    // // fallback to root for other urls
-    // historyApiFallback: true,
+    host: 'localhost',
+    port: 8080,
+    // match the output path
+    contentBase: path.resolve(__dirname, 'dist'),
+    // enable HMR on the devServer
+    hot: true,
+    // match the output 'publicPath'
+    publicPath: '/',
+    // fallback to root for other urls
+    historyApiFallback: true,
 
-    // inline: true,
+    inline: true,
 
-    // headers: { 'Access-Control-Allow-Origin': '*' },
+    headers: { 'Access-Control-Allow-Origin': '*' },
     /**
      * proxy is required in order to make api calls to
      * express server while using hot-reload webpack server
@@ -44,14 +44,6 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      // '/api/**': {
-      //   target: 'http://localhost:3000/',
-      //   secure: false,
-      // },
-      // '/assets/**': {
-      //   target: 'http://localhost:3000/',
-      //   secure: false,
-      // },
     },
   },
 //   //this node was added to fix fs and net errors

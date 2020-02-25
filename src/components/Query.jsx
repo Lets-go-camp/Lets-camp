@@ -15,6 +15,15 @@ import {
   Link
 } from 'react-router-dom';
 
+/*
+Our query page submits queries to the activeAPI via the route defined in server/routes/camp.js and 
+the middleware defined in server/controllers/campController.js. 
+
+Currently our api call is broken. We think it has an issue with how the API is responding since we seem 
+to be building our API call correctly. We think we might have to separately query for each amenity instead of 
+querying for all amenities at the same time in the way we build our apistring. 
+*/
+
 const Query = props => {
   const { stateOnChange, query, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
   return (

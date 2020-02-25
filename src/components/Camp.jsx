@@ -14,6 +14,11 @@ import {
   Table
 } from 'reactstrap';
 
+/*
+As mentioned in Results.jsx, the major work in Camp.jsx that needs to be done includes creating a function
+in App.jsx that can add each of our favorites to an array in state. 
+*/
+
 const Camp = props => {
     const { camp } = props;
     const { facilityName , latitude, longitude, sitesWithPetsAllowed, sitesWithSewerHookup, sitesWithWaterHookup, sitesWithWaterFront, state} = camp;

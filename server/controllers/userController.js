@@ -2,8 +2,6 @@ const fetch  = require('node-fetch');
 const userController = {};
 const db = require('../index.js')
 
-const api_key = process.env.API_KEY;
-
 
 userController.login = async (req, res, next) => {
   const user = req.body.username;
@@ -83,6 +81,11 @@ userController.addCampground = (req, res, next) => {
 
 }
 
+/*
+this addFav functionality has yet to be implemented. unsure of whether or not this middleware 
+will work with the way iteration teams will end up sending fav data back to the server. be sure to send 
+back userId when calling addFavs.
+*/
 userController.addFav = (req, res, next) => {
   const user = req.body.username;
   const campground = req.body.campground;
