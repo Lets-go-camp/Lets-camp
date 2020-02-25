@@ -16,11 +16,10 @@ import {
 } from 'react-router-dom';
 
 const Query = props => {
-  const { stateOnChange, queryCampground, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
+  const { stateOnChange, query, petOnChange, waterHookOnChange, sewerHookOnChange, waterFrontOnChange } = props;
   return (
     <div className='Query'>
-      <Form className='Form' onSubmit={queryCampground}>
-        {/* <h1 className="text-muted">TITLE OF PAGE</h1> */}
+      <Form className='Form' onSubmit={query}>
         <FormGroup className="states">
           <Label className="header" for='stateSelect'><strong>Where are you headed?</strong></Label>
           <Input type='select' name='select' id='stateSelect' size='1' className="statesDrop" onChange={stateOnChange}>
@@ -123,9 +122,9 @@ const Query = props => {
             </Label>
           </FormGroup>
         </FormGroup>
-        <Link to="/results">
           <Button className="QueryButton">Let's Go!</Button>
-        </Link>
+        {/* <Link to="/results"> */}
+        {/* </Link> */}
       </Form>
     </div>
   );

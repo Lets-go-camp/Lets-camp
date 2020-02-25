@@ -28,9 +28,9 @@ const Signup = props => {
           <Label for="password" hidden>Password</Label>
           <Input type="password" name="password" id="password" placeholder="Password" bsSize="large" />
         </FormGroup>
-        <Link to="/landing">
+        {/* <Link to="/landing"> */}
           <Button value="Submit" bssize="lg" outline color="secondary" >Get Started </Button>
-        </Link>
+        {/* </Link> */}
       </Form>
     </div>
   );
