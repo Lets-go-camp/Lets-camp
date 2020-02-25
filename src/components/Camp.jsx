@@ -10,6 +10,9 @@ import {
   FormText,
   Table
 } from 'reactstrap';
+import { FontAwesomeIcon as FAIcon } from '@fortawesome/react-fontawesome';
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as regStar } from '@fortawesome/free-regular-svg-icons';
 
 const Camp = props => {
     const { camp } = props;
