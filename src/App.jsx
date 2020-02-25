@@ -30,7 +30,7 @@ class App extends Component {
         hasFavs: false,
         loggedIn: false,
         signedUp: false,
-
+        userId: -1,
     }
     
     this.signup = this.signup.bind(this);
