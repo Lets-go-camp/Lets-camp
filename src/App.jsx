@@ -26,8 +26,11 @@ class App extends Component {
         waterFront: false,
 
         queriedGrounds: [],
+        queried: false,
         hasFavs: false,
         loggedIn: false,
+        signedUp: false,
+
     }
     
     this.signup = this.signup.bind(this);
@@ -63,9 +66,9 @@ class App extends Component {
     .then(data => {
       if(data){
         const newState = Object.assign({}, this.state)
-        newState.loggedIn = true;
+        newState.signedUp = true;
         this.setState(newState);
-        console.log(this.state.loggedIn);
+        console.log(this.state.signedUp);
         console.log('signup complete');
       }
     })
@@ -102,6 +105,7 @@ class App extends Component {
 
   query(e){
     e.preventDefault();
+    console.log(e.target);
     console.log('entered query')
     fetch('/camp/query', {
       method: 'POST',
@@ -118,10 +122,10 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(data => {
-      console.log('abc');
-      console.log(JSON.stringify(data));
       const newState = Object.assign({}, this.state);
       newState.queriedGrounds = data;
+      newState.queried = true;
+      console.log(newState)
       this.setState(newState);
     })
   }
@@ -188,6 +192,8 @@ class App extends Component {
   render() {
 
     let loggedin = this.state.loggedIn;
+    let queryResponse = this.state.queried;
+    let signedUp = this.state.signedUp;
 
     return(
       <div className="container">
@@ -196,22 +202,20 @@ class App extends Component {
               {loggedin ? <Landing hasFavs={this.state.hasFavs}/> : <Login login={this.login} />}
               {/* // render = {() => <Landing hasFavs={this.state.hasFavs}/>} */}
             </Route> 
-            <Route 
-              exact path="/camp" 
-              render= {() => <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} queryCampground={this.query}/>}
-            />
+            <Route exact path="/camp"> 
+              {queryResponse ? <Redirect to='/results'/> : <Query stateOnChange={this.stateOnChange} petOnChange={this.petOnChange} waterHookOnChange={this.waterHookOnChange} sewerHookOnChange={this.sewerHookOnChange} waterFrontOnChange={this.waterFrontOnChange} query={this.query}/>}
+            </Route>
             <Route 
               exact path="/results" 
               render= {() => <Results queriedGrounds={this.state.queriedGrounds} />}
             />
-            <Route
-              exact path="/signup"
-              render = {() =>  <Signup signup={this.signup} />}
-            />
-            <Route
-              exact path="/landing"
+            <Route exact path="/signup">
+              {signedUp ? <Landing hasFavs={this.state.hasFavs}/> : <Signup signup={this.signup}/>}
+            </Route>
+            <Route exact path="/landing">
+              {queryResponse ? <Redirect to='/results'/> : <Login login={this.login} />}
               render = {() =>  <Landing hasFavs={this.state.hasFavs}/>}
-            />
+            </Route>
         </Switch>
         <ul>
           <li><Link to="/user">Login</Link></li>

@@ -13,26 +13,20 @@ import {
 
 const Camp = props => {
     const { camp } = props;
-    const name = camp[0];
-    const pets = camp[1];
-    const sewerHook = camp[2];
-    const waterHook = camp[3];
-    const longitude = camp[4];
-    const latitude = camp[5];
-    const waterfront = camp[6]
+    const { facilityName , latitude, longitude, sitesWithPetsAllowed, sitesWithSewerHookup, sitesWithWaterHookup, sitesWithWaterFront, state} = camp;
 
     return (
-        <ReactFragment className="CampFrag">
+        // <ReactFragment className="CampFrag">
             <tr className="CampRow">
-                <td>{name}</td>
-                <td>{pets}</td>
-                <td>{sewerHook}</td>
-                <td>{waterHook}</td>
-                <td>{waterfront}</td>
+                <td>{facilityName}</td>
+                <td>{sitesWithPetsAllowed}</td>
+                <td>{sitesWithSewerHookup}</td>
+                <td>{sitesWithWaterHookup}</td>
+                <td>{sitesWithWaterFront}</td>
                 <td>{longitude}</td>
                 <td>{latitude}</td>
             </tr>
-        </ReactFragment>
+        // </ReactFragment>
     )
 };
 
