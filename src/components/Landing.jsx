@@ -10,6 +10,11 @@ import {
   Button
 } from 'reactstrap'
 
+/* The Landing page is the page our users are presented with on login or signup. Here, we 
+meant to render our current favorites in cards that might provide additional details for the campsites 
+our users have favorited as well as a button that takes them to our Query page in Query.jsx in order to find 
+potential campgrounds via the Active API. */
+
 const landing = props => {
 
   const { hasFavs } = props;

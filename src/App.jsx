@@ -15,6 +15,7 @@ const parseString = require('xml2js').parseString;
 class App extends Component {
   constructor(props) {
     super(props);
+
     /* The first 5 keys within state here handle our dynamic API query on our Query page
     These get flipped on calling onChange methods on the radio buttons that get rendered in Query.
     
@@ -23,11 +24,17 @@ class App extends Component {
     queried, hasFavs, loggedIn, and signedUp all handle logic to dynamically render our website from 
     action. For example, when a user logs in, loggedIn gets set to true via setState. This triggers a re-render
     of our page and a re-evaluation of the logic in our render(). Please reference the render() to view how
-    we are handlimng dynamic rendering
+    we are handlimng dynamic rendering.
+
+    hasFavs is used to dynamically render favorites in Landing.jsx. when hasFavs is truthy, favsHeader and favs will render. 
+    The logic to give favs cards that represent our favorites still needs to be fleshed out.
     
     userId is meant to hold our userId in order to submit a POST request on adding favorites. We wanted to get
     userId back from the back-end upon signing up or logging and subsequently prop drill userId down to Results.jsx
-    in order to submit a POST request from there to our backend that triggered an addition of favs to the server*/
+    in order to submit a POST request from there to our backend that triggered an addition of favs to the server. userID 
+    should be able to be passed back from the backend via res.send(res.locals).
+    */
+
     this.state = {
         pet: false,
         state: "",
@@ -208,7 +215,7 @@ class App extends Component {
 
     /*to explain the first route, if we are at '/' and loggedin === true, we will render our landing page. 
     However, if we are at '/' and loggedin === false. we will render our Login page. */
-    
+
     return (
       <div className='container'>
         <Switch>

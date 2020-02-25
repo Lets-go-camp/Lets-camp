@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
 import { 
   Container, 
   Button, 
@@ -14,6 +8,9 @@ import {
   Input, 
   FormText 
 } from 'reactstrap';
+
+/* this logic correctly redirects the page to the proper page upon resolution of async 
+ response from the POST request in this.props.signup via setState in the main App.jsx */ 
 
 const Signup = props => {
   const {signup} = props;
@@ -28,9 +25,7 @@ const Signup = props => {
           <Label for="password" hidden>Password</Label>
           <Input type="password" name="password" id="password" placeholder="Password" bsSize="large" />
         </FormGroup>
-        {/* <Link to="/landing"> */}
           <Button value="Submit" bssize="lg" outline color="secondary" >Get Started </Button>
-        {/* </Link> */}
       </Form>
     </div>
   );
