@@ -238,24 +238,25 @@
   opacity: 0.8;
 }
 
+
 Table {
   width: 60%;
-  color: whitesmoke;
   overflow: scroll;
+  background-color: rgba(134, 134, 134, 0.4);
 }
 
 thead {
   color: whitesmoke;
   font-size: 1.5em;
   text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34), 1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
-  opacity: 0.9;
+  /* opacity: 0.9; */
 }
 
 .CampRow {
   color: whitesmoke;
   font-size: 1.2em;
   text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34), 1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
-  opacity: 0.9;
+  /* opacity: 0.9; */
 }
 
 .findMore {
@@ -265,6 +266,7 @@ thead {
 
 td .form-check-input{
   margin-left: 3%;
+  background-color: rgba(255, 255, 255, 0.199);
 }
 
 /* .queryContainer {
