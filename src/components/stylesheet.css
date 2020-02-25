@@ -22,18 +22,18 @@
   align-items: center;
 }
 
-.Signup Form {
-  width: 30%; 
+.Signup form {
+  width: 30%;
 }
 
-.Signup Input {
+.Signup input {
   font-size: 1.4em;
   opacity: 0.6;
-  margin-Top: 1em;
+  margin-top: 1em;
   border: 1px solid #989898;
 }
 
-.Signup Button {
+.Signup button {
   font-size: 1.3em;
   opacity: 0.8;
   color: whitesmoke;
@@ -41,7 +41,7 @@
   border: whitesmoke;
 }
 
-.Signup Button:hover {
+.Signup button:hover {
   opacity: 0.6;
   color: rgb(0, 68, 51);
   background-color: whitesmoke;
@@ -49,11 +49,11 @@
 }
 
 .Login {
-  background: url('../assets/MountainTentLg.jpg') no-repeat center center fixed; 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-	
+  background: url('../assets/MountainTentLg.jpg') no-repeat center center fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
@@ -64,25 +64,25 @@
   align-items: center;
 }
 
-.Login Form{
+.Login form {
   width: 30%;
 }
 
-.Login Input {
+.Login input {
   font-size: 1.4em;
   opacity: 0.6;
-  margin-Top: 1em;
+  margin-top: 1em;
   border: 1px solid #989898;
 }
 
 .Login a {
-  margin-left: 70%;
+  margin-left: 35%;
   /* color: rgb(25, 90, 143); */
   font-size: 1.1em;
   /* opacity: 0.6; */
 }
 
-.Login Button {
+.Login button {
   font-size: 1.3em;
   opacity: 0.8;
   color: whitesmoke;
@@ -91,21 +91,20 @@
 
 .Signup {
   background: url('../assets/RVLg.jpg') no-repeat center center fixed;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-	
+  position: fixed;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
-
 }
 .Landing {
   background: url('../assets/TentCanyonLg.jpg') no-repeat center center fixed;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-	
+  position: fixed;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
@@ -114,21 +113,22 @@
   flex-direction: column;
   align-items: center;
   color: whitesmoke;
-
 }
 
-.Landing h1,h3{
-  text-shadow: -1px 0 rgb(218, 81, 0), 0 1px rgb(218, 81, 0), 1px 0 rgb(218, 81, 0), 0 -1px rgb(218, 81, 0);
-  opacity: .8;
+.Landing h1,
+h3 {
+  text-shadow: -1px 0 rgb(218, 81, 0), 0 1px rgb(218, 81, 0),
+    1px 0 rgb(218, 81, 0), 0 -1px rgb(218, 81, 0);
+  opacity: 0.8;
 }
 
-.Landing h1{
+.Landing h1 {
   margin: 2% 0 15% 0;
   font-size: 4em;
 }
 
-.Landing h3{
-  margin-top: 5%; 
+.Landing h3 {
+  margin-top: 5%;
   font-size: 2em;
 }
 
@@ -141,23 +141,23 @@
   border: 2px;
 } */
 
-.Landing Button {
+.Landing button {
   background-color: whitesmoke;
-  opacity: .7;
+  opacity: 0.7;
   font-size: 1.2em;
 }
 
-.Landing Button:hover {
+.Landing button:hover {
   border: 1px solid whitesmoke;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .Query {
   background: url('../assets/NightCampLg.jpg') no-repeat center center fixed;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-	
+  position: fixed;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
@@ -168,12 +168,13 @@
   align-items: center;
 }
 
-.Query Form {
+.Query form {
   color: whitesmoke;
   opacity: 0.8;
   font-size: 1.2em;
-  text-shadow: -2px 0 rgb(34, 34, 34), 0 2px rgb(34, 34, 34), 2px 0 rgb(34, 34, 34), 0 -2px rgb(34, 34, 34);
-  letter-spacing: .7px;
+  text-shadow: -2px 0 rgb(34, 34, 34), 0 2px rgb(34, 34, 34),
+    2px 0 rgb(34, 34, 34), 0 -2px rgb(34, 34, 34);
+  letter-spacing: 0.7px;
 }
 
 .header {
@@ -185,18 +186,17 @@
   overflow: scroll;
 }
 
-.states{
+.states {
   display: flex;
   flex-direction: column;
 }
 
-
-.QueryButton{
+.QueryButton {
   background-color: rgb(0, 70, 46);
   border: 2px solid whitesmoke;
   font-size: 1.1em;
 }
-.QueryButton:hover{
+.QueryButton:hover {
   background-color: whitesmoke;
   color: rgb(0, 70, 46);
   border: 2px solid rgb(0, 70, 46);
@@ -204,10 +204,10 @@
 
 .Results {
   background: url('../assets/LakeHouseLg.jpg') no-repeat center center fixed;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-	
+  position: fixed;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
@@ -219,18 +219,19 @@
 
 .Results h1 {
   color: rgb(236, 234, 234);
-  text-shadow: -2px 0 rgb(0, 70, 46), 0 3px rgb(0, 70, 46), 3px 0 rgb(0, 70, 46), 0 -2px rgb(0, 70, 46);
+  text-shadow: -2px 0 rgb(0, 70, 46), 0 3px rgb(0, 70, 46), 3px 0 rgb(0, 70, 46),
+    0 -2px rgb(0, 70, 46);
   /* text-shadow: -2px 0 teal, 0 3px teal, 3px 0 teal, 0 -2px teal; */
   font-size: 3.5em;
   margin-top: 5%;
   margin-bottom: 5%;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .returnHome {
   position: fixed;
-  Top: 0;
-  Right: 0;
+  top: 0;
+  right: 0;
   font-size: 1.2em;
   margin-top: 2%;
   margin-right: 4%;
@@ -238,21 +239,39 @@
   opacity: 0.8;
 }
 
-.Table {
+table {
   width: 60%;
-  color: whitesmoke;
+  overflow: scroll;
+  background-color: rgba(134, 134, 134, 0.4);
 }
 
 thead {
-  font-size: 1.1em;
-  opacity: 0.9;
-  text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34), 1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
-  opacity: 0.9;
+  color: whitesmoke;
+  font-size: 1.5em;
+  text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34),
+    1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
+  /* opacity: 0.9; */
+}
+
+.CampRow {
+  color: whitesmoke;
+  font-size: 1.2em;
+  text-shadow: -1px 0 rgb(34, 34, 34), 0 1px rgb(34, 34, 34),
+    1px 0 rgb(34, 34, 34), 0 -1px rgb(34, 34, 34);
+  /* opacity: 0.9; */
 }
 
 .findMore {
-  
+  font-size: 1.2em;
   opacity: 0.8;
+}
+td button {
+  width: 20px;
+}
+
+td .form-check-input {
+  margin-left: 3%;
+  background-color: rgba(255, 255, 255, 0.199);
 }
 
 /* .queryContainer {
