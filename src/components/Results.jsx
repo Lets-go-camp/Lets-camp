@@ -45,9 +45,11 @@ const Results = props => {
   return (
     <div className='Results'>
       <h1>Your Next Adventure Awaits</h1>
-      <Button className='returnHome' outline color='info'>
-        Return Home{' '}
-      </Button>
+      <Link to='/landing/ayypresent'>
+        <Button className='returnHome' outline color='info'>
+          Return Home{' '}
+        </Button>
+      </Link>
       <div
         style={{
           maxHeight: '800px',
@@ -70,7 +72,7 @@ const Results = props => {
           <tbody>{results}</tbody>
         </Table>
       </div>
-      {homeButton}
+      {/* {homeButton} */}
     </div>
   );
 };

@@ -18,7 +18,7 @@ const Camp = props => {
     const { camp } = props;
     const { facilityName , latitude, longitude, sitesWithPetsAllowed, sitesWithSewerHookup, sitesWithWaterHookup, sitesWithWaterFront, state} = camp;
 
-    let fav = <Button type="radio" name={`fav${facilityName}`} />
+    let fav = <button type="radio" name={`fav${facilityName}`} />
 
     // if(star.isFav){
     //     star = solidStar
